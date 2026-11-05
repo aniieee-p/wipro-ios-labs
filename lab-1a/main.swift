@@ -33,13 +33,9 @@ let averageMarks: Double = Double(totalMarks) / Double(totalSubjects)
 let percentage: Double = (Double(totalMarks) / Double(maximumMarks)) * 100
 
 // Check Pass or Fail
-let isPass: Bool = subject1 >= passingMarks &&
-                   subject2 >= passingMarks &&
-                   subject3 >= passingMarks &&
-                   subject4 >= passingMarks &&
-                   subject5 >= passingMarks
-
-let result: String = isPass ? "PASS" : "FAIL"
+let isPass: Bool = [
+    subject1, subject2, subject3, subject4, subject5
+].allSatisfy { isValidMark($0) && $0 >= passingMarks }
 
 // MARK: - R4: If-Else and Switch Statements
 
@@ -55,22 +51,81 @@ if isPass {
 // 2. Switch Statement for Grade Assignment
 let grade: String
 
-switch percentage {
-case 90...100:
-    grade = "A+"
-case 80..<90:
-    grade = "A"
-case 70..<80:
-    grade = "B"
-case 60..<70:
-    grade = "C"
-case 50..<60:
-    grade = "D"
-default:
+if !isPass {
     grade = "F"
+} else {
+    switch percentage {
+    case 90...100:
+        grade = "A+"
+    case 80..<90:
+        grade = "A"
+    case 70..<80:
+        grade = "B"
+    case 60..<70:
+        grade = "C"
+    case 50..<60:
+        grade = "D"
+    default:
+        grade = "F"
+    }
 }
 
+// MARK: - R5: Boundary Value Validation
 
+// Function to validate subject marks
+func isValidMark(_ mark: Int) -> Bool {
+    return mark >= 0 && mark <= 100
+}
+
+// Function to validate attendance
+func isValidAttendance(_ attendance: Double) -> Bool {
+    return attendance.isFinite && (0.0...100.0).contains(attendance)
+}
+// Validate actual student data
+let allMarksValid: Bool = [
+    subject1, subject2, subject3, subject4, subject5
+].allSatisfy { isValidMark($0) }
+
+let attendanceValid: Bool = isValidAttendance(attendancePercentage)
+
+print("\n========== STUDENT DATA VALIDATION ==========")
+print("All Subject Marks Valid: \(allMarksValid)")
+print("Attendance Valid: \(attendanceValid)")
+
+// Test 1: Minimum marks (0)
+let minimumMark: Int = 0
+print("\nMinimum mark (0): \(isValidMark(minimumMark) ? "Valid" : "Invalid")")
+
+// Test 2: Maximum marks (100)
+let maximumMark: Int = 100
+print("Maximum mark (100): \(isValidMark(maximumMark) ? "Valid" : "Invalid")")
+
+// Test 3: Failing marks (30)
+let failingMark: Int = 30
+let failingMarkResult: String = isValidMark(failingMark) && failingMark < passingMarks
+    ? "Valid mark, but FAIL"
+    : "Invalid or passing mark"
+print("Failing mark (30): \(failingMarkResult)")
+
+// Test 4: Invalid marks (105)
+let invalidMark: Int = 105
+print("Invalid mark (105): \(isValidMark(invalidMark) ? "Valid" : "Invalid")")
+
+// Test 5: Invalid attendance (105%)
+let invalidAttendance: Double = 105.0
+print("Invalid attendance (105%): \(isValidAttendance(invalidAttendance) ? "Valid" : "Invalid")")
+
+// Test 6: Minimum attendance (0%)
+let minimumAttendance: Double = 0.0
+print("Minimum attendance (0%): \(isValidAttendance(minimumAttendance) ? "Valid" : "Invalid")")
+
+// Test 7: Maximum attendance (100%)
+let maximumAttendance: Double = 100.0
+print("Maximum attendance (100%): \(isValidAttendance(maximumAttendance) ? "Valid" : "Invalid")")
+
+// Test 8: Negative marks
+let negativeMark: Int = -5
+print("Negative mark (-5): \(isValidMark(negativeMark) ? "Valid" : "Invalid")")
 // MARK: - R3: Swift Operators
 
 // 1. Arithmetic Operators
