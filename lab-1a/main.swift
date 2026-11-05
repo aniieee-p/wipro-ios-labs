@@ -41,6 +41,100 @@ let isPass: Bool = subject1 >= passingMarks &&
 
 let result: String = isPass ? "PASS" : "FAIL"
 
+// MARK: - R4: If-Else and Switch Statements
+
+// 1. If-Else Statement for Pass/Fail
+var finalResult: String
+
+if isPass {
+    finalResult = "PASS"
+} else {
+    finalResult = "FAIL"
+}
+
+// 2. Switch Statement for Grade Assignment
+let grade: String
+
+switch percentage {
+case 90...100:
+    grade = "A+"
+case 80..<90:
+    grade = "A"
+case 70..<80:
+    grade = "B"
+case 60..<70:
+    grade = "C"
+case 50..<60:
+    grade = "D"
+default:
+    grade = "F"
+}
+
+
+// MARK: - R3: Swift Operators
+
+// 1. Arithmetic Operators
+print("\n========== ARITHMETIC OPERATORS ==========")
+
+let firstNumber: Int = 20
+let secondNumber: Int = 5
+
+print("Addition: \(firstNumber + secondNumber)")
+print("Subtraction: \(firstNumber - secondNumber)")
+print("Multiplication: \(firstNumber * secondNumber)")
+print("Division: \(firstNumber / secondNumber)")
+print("Remainder: \(firstNumber % secondNumber)")
+
+
+// 2. Comparison Operators
+print("\n========== COMPARISON OPERATORS ==========")
+
+print("Equal: \(firstNumber == secondNumber)")
+print("Not Equal: \(firstNumber != secondNumber)")
+print("Greater Than: \(firstNumber > secondNumber)")
+print("Less Than: \(firstNumber < secondNumber)")
+print("Greater Than or Equal: \(firstNumber >= secondNumber)")
+print("Less Than or Equal: \(firstNumber <= secondNumber)")
+
+
+// 3. Logical Operators
+print("\n========== LOGICAL OPERATORS ==========")
+
+let hasPassed: Bool = true
+let attendanceEligible: Bool = attendancePercentage >= 75
+
+print("AND (&&): \(hasPassed && attendanceEligible)")
+print("OR (||): \(hasPassed || attendanceEligible)")
+print("NOT (!): \(!hasPassed)")
+
+
+// 4. Compound Assignment Operators
+print("\n========== COMPOUND ASSIGNMENT OPERATORS ==========")
+
+var score: Int = 50
+
+score += 10
+print("After += 10: \(score)")
+
+score -= 5
+print("After -= 5: \(score)")
+
+score *= 2
+print("After *= 2: \(score)")
+
+score /= 5
+print("After /= 5: \(score)")
+
+
+// 5. Nil-Coalescing Operator
+print("\n========== NIL-COALESCING OPERATOR ==========")
+
+let optionalName: String? = nil
+let displayName: String = optionalName ?? "Unknown Student"
+
+print("Student Name: \(displayName)")
+
+
 // MARK: - Display Student Details
 
 print("========== STUDENT DETAILS ==========")
@@ -64,4 +158,6 @@ print("\n========== ACADEMIC RESULT ==========")
 print("Total Marks: \(totalMarks) / \(maximumMarks)")
 print("Average Marks: \(averageMarks)")
 print("Percentage: \(percentage)%")
-print("Result: \(result)")
+// R4: Formatted Academic Result
+print("Pass/Fail Status: \(finalResult)")
+print("Grade: \(grade)")
