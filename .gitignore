@@ -1,0 +1,6 @@
+*.exe
+*.exp
+*.lib
+*.o
+*.swiftmodule
+*.swiftdoc
