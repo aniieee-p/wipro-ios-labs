@@ -1,0 +1,26 @@
+name: Lab 2A Swift Runtime Verification
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'lab-2a/**'
+      - '.github/workflows/swift-lab-2a.yml'
+  workflow_dispatch:
+
+jobs:
+  build-and-run:
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check Swift version
+        run: swift --version
+
+      - name: Compile Swift project
+        run: swiftc lab-2a/main.swift -o lab-2a/lab-2a
+
+      - name: Run Swift project
+        run: ./lab-2a/lab-2a
