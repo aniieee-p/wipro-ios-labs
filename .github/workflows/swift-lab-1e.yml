@@ -1,0 +1,26 @@
+name: Lab 1E Swift Runtime Verification
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'lab-1e/**'
+      - '.github/workflows/swift-lab-1e.yml'
+  workflow_dispatch:
+
+jobs:
+  build-and-run:
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check Swift version
+        run: swift --version
+
+      - name: Compile Swift project
+        run: swiftc lab-1e/main.swift -o lab-1e/lab-1e
+
+      - name: Run Swift project
+        run: ./lab-1e/lab-1e
