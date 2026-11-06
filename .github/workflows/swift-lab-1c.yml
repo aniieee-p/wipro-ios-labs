@@ -1,0 +1,27 @@
+
+name: Lab 1C Swift Runtime Verification
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'lab-1c/**'
+      - '.github/workflows/swift-lab-1c.yml'
+  workflow_dispatch:
+
+jobs:
+  build-and-run:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check Swift version
+        run: swift --version
+
+      - name: Compile Swift project
+        run: swiftc lab-1c/main.swift -o lab-1c/lab-1c
+
+      - name: Run Swift project
+        run: ./lab-1c/lab-1c
