@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="390" height="844" viewBox="0 0 390 844" role="img" aria-labelledby="title description">
+  <title id="title">Lifecycle demo Detail screen preview</title>
+  <desc id="description">Illustrative mockup of the two-screen SwiftUI lifecycle app Detail screen, not a simulator screenshot.</desc>
+  <rect width="390" height="844" fill="#fff"/>
+  <text x="24" y="27" font-family="Arial, sans-serif" font-size="13" fill="#111">9:41</text>
+  <text x="25" y="74" font-family="Arial, sans-serif" font-size="16" fill="#087aff">‹ Home</text>
+  <text x="195" y="74" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" font-weight="600" fill="#111">Details</text>
+  <circle cx="195" cy="285" r="44" fill="#e8f2ff"/>
+  <path d="M195 256a29 29 0 1 1-27 18" fill="none" stroke="#087aff" stroke-width="7" stroke-linecap="round"/>
+  <path d="M166 263l2 17 16-8" fill="#087aff"/>
+  <text x="195" y="380" text-anchor="middle" font-family="Arial, sans-serif" font-size="30" font-weight="700" fill="#111">Detail screen</text>
+  <text x="195" y="427" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" font-weight="600" fill="#222">Lightweight refreshes: 1</text>
+  <text x="195" y="461" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#666">Last refreshed: 9:41:08 AM</text>
+  <text x="195" y="805" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#8e8e93">Illustrative mockup · not a simulator capture</text>
+</svg>
