@@ -5,3 +5,5 @@
 *.swiftmodule
 *.swiftdoc
 .build/
+
+build-check/
