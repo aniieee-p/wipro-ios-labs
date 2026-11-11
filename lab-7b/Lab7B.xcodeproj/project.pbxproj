@@ -1,0 +1,56 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {};
+	objectVersion = 56;
+	objects = {
+/* Begin PBXBuildFile section */
+		A20000000000000000000001 /* Lab7BAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20000000000000000000001 /* Lab7BAppDelegate.swift */; };
+		A20000000000000000000002 /* CourseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20000000000000000000002 /* CourseListViewController.swift */; };
+		A20000000000000000000003 /* CourseDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20000000000000000000003 /* CourseDetailViewController.swift */; };
+		A20000000000000000000004 /* CourseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20000000000000000000004 /* CourseTableViewCell.swift */; };
+		A20000000000000000000005 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20000000000000000000005 /* Course.swift */; };
+/* End PBXBuildFile section */
+/* Begin PBXFileReference section */
+		B20000000000000000000001 /* Lab7BAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lab7BAppDelegate.swift; sourceTree = "<group>"; };
+		B20000000000000000000002 /* CourseListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseListViewController.swift; sourceTree = "<group>"; };
+		B20000000000000000000003 /* CourseDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDetailViewController.swift; sourceTree = "<group>"; };
+		B20000000000000000000004 /* CourseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseTableViewCell.swift; sourceTree = "<group>"; };
+		B20000000000000000000005 /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
+		B20000000000000000000006 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B20000000000000000000007 /* Lab7B.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lab7B.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+/* Begin PBXFrameworksBuildPhase section */
+		C20000000000000000000001 /* Frameworks */ = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+/* End PBXFrameworksBuildPhase section */
+/* Begin PBXGroup section */
+		D20000000000000000000001 = {isa = PBXGroup; children = (D20000000000000000000002 /* App */, D20000000000000000000003 /* Sources */, D20000000000000000000004 /* Products */,); sourceTree = "<group>"; };
+		D20000000000000000000002 /* App */ = {isa = PBXGroup; children = (B20000000000000000000001 /* Lab7BAppDelegate.swift */, B20000000000000000000002 /* CourseListViewController.swift */, B20000000000000000000003 /* CourseDetailViewController.swift */, B20000000000000000000004 /* CourseTableViewCell.swift */, B20000000000000000000006 /* Info.plist */,); path = App; sourceTree = "<group>"; };
+		D20000000000000000000003 /* Sources */ = {isa = PBXGroup; children = (B20000000000000000000005 /* Course.swift */,); path = Sources/CourseDirectoryCore; sourceTree = "<group>"; };
+		D20000000000000000000004 /* Products */ = {isa = PBXGroup; children = (B20000000000000000000007 /* Lab7B.app */,); name = Products; sourceTree = "<group>"; };
+/* End PBXGroup section */
+/* Begin PBXNativeTarget section */
+		E20000000000000000000001 /* Lab7B */ = {isa = PBXNativeTarget; buildConfigurationList = F20000000000000000000001 /* Build configuration list for PBXNativeTarget "Lab7B" */; buildPhases = (C20000000000000000000001 /* Frameworks */, G20000000000000000000001 /* Sources */, H20000000000000000000001 /* Resources */,); buildRules = (); dependencies = (); name = Lab7B; productName = Lab7B; productReference = B20000000000000000000007 /* Lab7B.app */; productType = "com.apple.product-type.application"; };
+/* End PBXNativeTarget section */
+/* Begin PBXProject section */
+		E20000000000000000000002 /* Project object */ = {isa = PBXProject; attributes = {BuildIndependentTargetsIn parallel = 1; LastUpgradeCheck = 1600; TargetAttributes = {E20000000000000000000001 = {CreatedOnToolsVersion = 16.0; };};}; buildConfigurationList = F20000000000000000000002 /* Build configuration list for PBXProject "Lab7B" */; compatibilityVersion = "Xcode 14.0"; developmentRegion = en; hasScannedForEncodings = 0; knownRegions = (en, Base); mainGroup = D20000000000000000000001; productRefGroup = D20000000000000000000004 /* Products */; projectDirPath = ""; projectRoot = ""; targets = (E20000000000000000000001 /* Lab7B */,);};
+/* End PBXProject section */
+/* Begin PBXResourcesBuildPhase section */
+		H20000000000000000000001 /* Resources */ = {isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+/* End PBXResourcesBuildPhase section */
+/* Begin PBXSourcesBuildPhase section */
+		G20000000000000000000001 /* Sources */ = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (A20000000000000000000001 /* Lab7BAppDelegate.swift in Sources */, A20000000000000000000002 /* CourseListViewController.swift in Sources */, A20000000000000000000003 /* CourseDetailViewController.swift in Sources */, A20000000000000000000004 /* CourseTableViewCell.swift in Sources */, A20000000000000000000005 /* Course.swift in Sources */,); runOnlyForDeploymentPostprocessing = 0; };
+/* End PBXSourcesBuildPhase section */
+/* Begin XCBuildConfiguration section */
+		I20000000000000000000001 /* Debug project */ = {isa = XCBuildConfiguration; buildSettings = {IPHONEOS_DEPLOYMENT_TARGET = 16.0; SDKROOT = iphoneos; SWIFT_VERSION = 5.0;}; name = Debug; };
+		I20000000000000000000002 /* Release project */ = {isa = XCBuildConfiguration; buildSettings = {IPHONEOS_DEPLOYMENT_TARGET = 16.0; SDKROOT = iphoneos; SWIFT_VERSION = 5.0;}; name = Release; };
+		I20000000000000000000003 /* Debug target */ = {isa = XCBuildConfiguration; buildSettings = {CODE_SIGN_STYLE = Automatic; GENERATE_INFOPLIST_FILE = NO; INFOPLIST_FILE = App/Info.plist; IPHONEOS_DEPLOYMENT_TARGET = 16.0; PRODUCT_BUNDLE_IDENTIFIER = com.example.wipro.lab7b; PRODUCT_NAME = "$(TARGET_NAME)"; SUPPORTED_PLATFORMS = "iphoneos iphonesimulator"; SWIFT_VERSION = 5.0; TARGETED_DEVICE_FAMILY = 1;}; name = Debug; };
+		I20000000000000000000004 /* Release target */ = {isa = XCBuildConfiguration; buildSettings = {CODE_SIGN_STYLE = Automatic; GENERATE_INFOPLIST_FILE = NO; INFOPLIST_FILE = App/Info.plist; IPHONEOS_DEPLOYMENT_TARGET = 16.0; PRODUCT_BUNDLE_IDENTIFIER = com.example.wipro.lab7b; PRODUCT_NAME = "$(TARGET_NAME)"; SUPPORTED_PLATFORMS = "iphoneos iphonesimulator"; SWIFT_VERSION = 5.0; TARGETED_DEVICE_FAMILY = 1;}; name = Release; };
+/* End XCBuildConfiguration section */
+/* Begin XCConfigurationList section */
+		F20000000000000000000001 /* Build configuration list for PBXNativeTarget "Lab7B" */ = {isa = XCConfigurationList; buildConfigurations = (I20000000000000000000003 /* Debug target */, I20000000000000000000004 /* Release target */,); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release;};
+		F20000000000000000000002 /* Build configuration list for PBXProject "Lab7B" */ = {isa = XCConfigurationList; buildConfigurations = (I20000000000000000000001 /* Debug project */, I20000000000000000000002 /* Release project */,); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release;};
+/* End XCConfigurationList section */
+	};
+	rootObject = E20000000000000000000002 /* Project object */;
+}

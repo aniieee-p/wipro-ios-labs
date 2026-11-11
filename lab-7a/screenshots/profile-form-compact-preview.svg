@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="390" height="844" viewBox="0 0 390 844">
+  <rect width="390" height="844" fill="#f2f2f7"/>
+  <rect width="390" height="108" fill="#fff"/>
+  <text x="24" y="38" font-family="Arial,sans-serif" font-size="12" fill="#666">9:41</text>
+  <text x="24" y="82" font-family="Arial,sans-serif" font-size="20" font-weight="700" fill="#111">Profile</text>
+  <text x="195" y="151" text-anchor="middle" font-family="Arial,sans-serif" font-size="28" font-weight="700" fill="#111">Create your profile</text>
+  <text x="195" y="180" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" fill="#666">Enter your details to get started.</text>
+  <g font-family="Arial,sans-serif">
+    <text x="24" y="235" font-size="16" font-weight="700" fill="#111">Full name</text>
+    <rect x="24" y="247" width="342" height="48" rx="8" fill="#fff" stroke="#b8b8bf"/>
+    <text x="38" y="277" font-size="16" fill="#888">Ada Lovelace</text>
+    <text x="24" y="337" font-size="16" font-weight="700" fill="#111">Email address</text>
+    <rect x="24" y="349" width="342" height="48" rx="8" fill="#fff" stroke="#b8b8bf"/>
+    <text x="38" y="379" font-size="16" fill="#888">name@example.com</text>
+    <text x="24" y="439" font-size="16" font-weight="700" fill="#111">Course</text>
+    <rect x="24" y="451" width="342" height="48" rx="8" fill="#fff" stroke="#b8b8bf"/>
+    <text x="38" y="481" font-size="16" fill="#888">Course name</text>
+    <rect x="24" y="532" width="342" height="52" rx="10" fill="#2478e5"/>
+    <text x="195" y="565" text-anchor="middle" font-size="17" font-weight="700" fill="#fff">Submit profile</text>
+    <text x="195" y="617" text-anchor="middle" font-size="14" fill="#25804b">Profile submitted successfully.</text>
+  </g>
+  <text x="195" y="818" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#888">Compact portrait · illustrative preview, not a simulator capture</text>
+</svg>
