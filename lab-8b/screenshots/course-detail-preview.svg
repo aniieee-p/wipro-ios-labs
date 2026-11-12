@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="430" height="900" viewBox="0 0 430 900" role="img" aria-labelledby="title description">
+  <title id="title">Illustrative selected course detail screen preview</title>
+  <desc id="description">A SwiftUI navigation detail form for Swift Fundamentals with instructor, duration, summary, back button, and Courses toolbar action. Illustrative preview, not an iOS simulator capture.</desc>
+  <rect width="430" height="900" fill="#f2f2f7"/>
+  <rect x="14" y="12" width="402" height="876" rx="48" fill="#111318"/>
+  <rect x="25" y="23" width="380" height="854" rx="40" fill="#f2f2f7"/>
+  <rect x="150" y="31" width="130" height="28" rx="14" fill="#111318"/>
+  <text x="54" y="91" font-family="Arial, sans-serif" font-size="14" fill="#25252a">9:41</text>
+  <text x="54" y="145" font-family="Arial, sans-serif" font-size="16" fill="#3157bd">‹ Back</text>
+  <text x="215" y="145" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#17171b">Swift Fundamentals</text>
+  <text x="370" y="145" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#3157bd">Courses</text>
+  <g font-family="Arial, sans-serif">
+    <text x="47" y="205" font-size="14" font-weight="700" fill="#66666e">COURSE</text>
+    <rect x="42" y="219" width="346" height="155" rx="14" fill="#ffffff"/>
+    <text x="62" y="258" font-size="16" fill="#686870">Title</text>
+    <text x="62" y="283" font-size="16" font-weight="600" fill="#17171b">Swift Fundamentals</text>
+    <line x1="62" y1="298" x2="368" y2="298" stroke="#dedee3"/>
+    <text x="62" y="326" font-size="16" fill="#686870">Instructor</text>
+    <text x="368" y="326" text-anchor="end" font-size="16" fill="#17171b">A. Morgan</text>
+    <text x="62" y="355" font-size="16" fill="#686870">Duration</text>
+    <text x="368" y="355" text-anchor="end" font-size="16" fill="#17171b">4 weeks</text>
+    <text x="47" y="421" font-size="14" font-weight="700" fill="#66666e">ABOUT THIS COURSE</text>
+    <rect x="42" y="435" width="346" height="124" rx="14" fill="#ffffff"/>
+    <text x="62" y="472" font-size="15" fill="#292930">
+      <tspan x="62" dy="0">Learn Swift syntax, value types,</tspan>
+      <tspan x="62" dy="23">collections, and safe optional</tspan>
+      <tspan x="62" dy="23">handling.</tspan>
+    </text>
+    <text x="215" y="835" text-anchor="middle" font-size="12" fill="#74747c">ILLUSTRATIVE PREVIEW · NOT A SIMULATOR CAPTURE</text>
+  </g>
+</svg>

@@ -1,0 +1,62 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {};
+	objectVersion = 56;
+	objects = {
+/* Begin PBXBuildFile section */
+		A40000000000000000000001 /* AssessmentM3AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40000000000000000000001 /* AssessmentM3AppDelegate.swift */; };
+		A40000000000000000000002 /* ProfileFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40000000000000000000002 /* ProfileFormViewController.swift */; };
+		A40000000000000000000003 /* DirectoryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40000000000000000000003 /* DirectoryListViewController.swift */; };
+		A40000000000000000000004 /* DirectoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40000000000000000000004 /* DirectoryDetailViewController.swift */; };
+		A40000000000000000000005 /* ProfileFormValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40000000000000000000005 /* ProfileFormValidator.swift */; };
+		A40000000000000000000006 /* DirectoryUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40000000000000000000006 /* DirectoryUser.swift */; };
+		A40000000000000000000007 /* UserDirectoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40000000000000000000007 /* UserDirectoryService.swift */; };
+		A40000000000000000000008 /* DirectoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40000000000000000000008 /* DirectoryViewModel.swift */; };
+/* End PBXBuildFile section */
+/* Begin PBXFileReference section */
+		B40000000000000000000001 /* AssessmentM3AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssessmentM3AppDelegate.swift; sourceTree = "<group>"; };
+		B40000000000000000000002 /* ProfileFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFormViewController.swift; sourceTree = "<group>"; };
+		B40000000000000000000003 /* DirectoryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectoryListViewController.swift; sourceTree = "<group>"; };
+		B40000000000000000000004 /* DirectoryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectoryDetailViewController.swift; sourceTree = "<group>"; };
+		B40000000000000000000005 /* ProfileFormValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFormValidator.swift; sourceTree = "<group>"; };
+		B40000000000000000000006 /* DirectoryUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectoryUser.swift; sourceTree = "<group>"; };
+		B40000000000000000000007 /* UserDirectoryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDirectoryService.swift; sourceTree = "<group>"; };
+		B40000000000000000000008 /* DirectoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectoryViewModel.swift; sourceTree = "<group>"; };
+		B40000000000000000000009 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B40000000000000000000010 /* AssessmentM3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AssessmentM3.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+/* Begin PBXFrameworksBuildPhase section */
+		C40000000000000000000001 /* Frameworks */ = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+/* End PBXFrameworksBuildPhase section */
+/* Begin PBXGroup section */
+		D40000000000000000000001 = {isa = PBXGroup; children = (D40000000000000000000002 /* App */, D40000000000000000000003 /* Core */, D40000000000000000000004 /* Products */,); sourceTree = "<group>"; };
+		D40000000000000000000002 /* App */ = {isa = PBXGroup; children = (B40000000000000000000001 /* AssessmentM3AppDelegate.swift */, B40000000000000000000002 /* ProfileFormViewController.swift */, B40000000000000000000003 /* DirectoryListViewController.swift */, B40000000000000000000004 /* DirectoryDetailViewController.swift */, B40000000000000000000009 /* Info.plist */,); path = App; sourceTree = "<group>"; };
+		D40000000000000000000003 /* Core */ = {isa = PBXGroup; children = (B40000000000000000000005 /* ProfileFormValidator.swift */, B40000000000000000000006 /* DirectoryUser.swift */, B40000000000000000000007 /* UserDirectoryService.swift */, B40000000000000000000008 /* DirectoryViewModel.swift */,); path = Sources/NetworkingUIKitCore; sourceTree = "<group>"; };
+		D40000000000000000000004 /* Products */ = {isa = PBXGroup; children = (B40000000000000000000010 /* AssessmentM3.app */,); name = Products; sourceTree = "<group>"; };
+/* End PBXGroup section */
+/* Begin PBXNativeTarget section */
+		E40000000000000000000001 /* AssessmentM3 */ = {isa = PBXNativeTarget; buildConfigurationList = F40000000000000000000001 /* Build configuration list for PBXNativeTarget "AssessmentM3" */; buildPhases = (C40000000000000000000001 /* Frameworks */, G40000000000000000000001 /* Sources */, H40000000000000000000001 /* Resources */,); buildRules = (); dependencies = (); name = AssessmentM3; productName = AssessmentM3; productReference = B40000000000000000000010 /* AssessmentM3.app */; productType = "com.apple.product-type.application"; };
+/* End PBXNativeTarget section */
+/* Begin PBXProject section */
+		E40000000000000000000002 /* Project object */ = {isa = PBXProject; attributes = {BuildIndependentTargetsIn parallel = 1; LastUpgradeCheck = 1600; TargetAttributes = {E40000000000000000000001 = {CreatedOnToolsVersion = 16.0; };};}; buildConfigurationList = F40000000000000000000002 /* Build configuration list for PBXProject "AssessmentM3" */; compatibilityVersion = "Xcode 14.0"; developmentRegion = en; hasScannedForEncodings = 0; knownRegions = (en, Base); mainGroup = D40000000000000000000001; productRefGroup = D40000000000000000000004 /* Products */, projectDirPath = ""; projectRoot = ""; targets = (E40000000000000000000001 /* AssessmentM3 */,); };
+/* End PBXProject section */
+/* Begin PBXResourcesBuildPhase section */
+		H40000000000000000000001 /* Resources */ = {isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+/* End PBXResourcesBuildPhase section */
+/* Begin PBXSourcesBuildPhase section */
+		G40000000000000000000001 /* Sources */ = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (A40000000000000000000001 /* AssessmentM3AppDelegate.swift in Sources */, A40000000000000000000002 /* ProfileFormViewController.swift in Sources */, A40000000000000000000003 /* DirectoryListViewController.swift in Sources */, A40000000000000000000004 /* DirectoryDetailViewController.swift in Sources */, A40000000000000000000005 /* ProfileFormValidator.swift in Sources */, A40000000000000000000006 /* DirectoryUser.swift in Sources */, A40000000000000000000007 /* UserDirectoryService.swift in Sources */, A40000000000000000000008 /* DirectoryViewModel.swift in Sources */,); runOnlyForDeploymentPostprocessing = 0; };
+/* End PBXSourcesBuildPhase section */
+/* Begin XCBuildConfiguration section */
+		I40000000000000000000001 /* Debug project */ = {isa = XCBuildConfiguration; buildSettings = {IPHONEOS_DEPLOYMENT_TARGET = 16.0; SDKROOT = iphoneos; SWIFT_VERSION = 5.0;}; name = Debug; };
+		I40000000000000000000002 /* Release project */ = {isa = XCBuildConfiguration; buildSettings = {IPHONEOS_DEPLOYMENT_TARGET = 16.0; SDKROOT = iphoneos; SWIFT_VERSION = 5.0;}; name = Release; };
+		I40000000000000000000003 /* Debug target */ = {isa = XCBuildConfiguration; buildSettings = {CODE_SIGN_STYLE = Automatic; GENERATE_INFOPLIST_FILE = NO; INFOPLIST_FILE = App/Info.plist; IPHONEOS_DEPLOYMENT_TARGET = 16.0; PRODUCT_BUNDLE_IDENTIFIER = com.example.wipro.assessmentm3; PRODUCT_NAME = "$(TARGET_NAME)"; SUPPORTED_PLATFORMS = "iphoneos iphonesimulator"; SWIFT_VERSION = 5.0; TARGETED_DEVICE_FAMILY = 1;}; name = Debug; };
+		I40000000000000000000004 /* Release target */ = {isa = XCBuildConfiguration; buildSettings = {CODE_SIGN_STYLE = Automatic; GENERATE_INFOPLIST_FILE = NO; INFOPLIST_FILE = App/Info.plist; IPHONEOS_DEPLOYMENT_TARGET = 16.0; PRODUCT_BUNDLE_IDENTIFIER = com.example.wipro.assessmentm3; PRODUCT_NAME = "$(TARGET_NAME)"; SUPPORTED_PLATFORMS = "iphoneos iphonesimulator"; SWIFT_VERSION = 5.0; TARGETED_DEVICE_FAMILY = 1;}; name = Release; };
+/* End XCBuildConfiguration section */
+/* Begin XCConfigurationList section */
+		F40000000000000000000001 /* Build configuration list for PBXNativeTarget "AssessmentM3" */ = {isa = XCConfigurationList; buildConfigurations = (I40000000000000000000003 /* Debug target */, I40000000000000000000004 /* Release target */,); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+		F40000000000000000000002 /* Build configuration list for PBXProject "AssessmentM3" */ = {isa = XCConfigurationList; buildConfigurations = (I40000000000000000000001 /* Debug project */, I40000000000000000000002 /* Release project */,); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+/* End XCConfigurationList section */
+	};
+	rootObject = E40000000000000000000002 /* Project object */;
+}

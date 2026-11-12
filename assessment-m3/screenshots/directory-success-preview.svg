@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="390" height="844" viewBox="0 0 390 844">
+  <rect width="390" height="844" fill="#f2f2f7"/>
+  <rect width="390" height="116" fill="#fff"/>
+  <text x="24" y="38" font-family="Arial,sans-serif" font-size="12" fill="#666">9:41</text>
+  <text x="24" y="91" font-family="Arial,sans-serif" font-size="30" font-weight="700" fill="#111">People</text>
+  <text x="350" y="90" font-family="Arial,sans-serif" font-size="15" fill="#2478e5">↻</text>
+  <text x="24" y="145" font-family="Arial,sans-serif" font-size="14" fill="#666">Profile: Anish · Swift</text>
+  <g font-family="Arial,sans-serif">
+    <rect x="10" y="164" width="370" height="90" rx="12" fill="#fff"/>
+    <text x="26" y="199" font-size="18" font-weight="700" fill="#111">Leanne Graham</text>
+    <text x="26" y="225" font-size="14" fill="#666">Sincere@april.biz</text>
+    <text x="26" y="245" font-size="13" fill="#777">Romaguera-Crona</text>
+    <text x="352" y="215" font-size="24" fill="#aaa">›</text>
+    <rect x="10" y="262" width="370" height="90" rx="12" fill="#fff"/>
+    <text x="26" y="297" font-size="18" font-weight="700" fill="#111">Ervin Howell</text>
+    <text x="26" y="323" font-size="14" fill="#666">Shanna@melissa.tv</text>
+    <text x="26" y="343" font-size="13" fill="#777">Deckow-Crist</text>
+    <text x="352" y="313" font-size="24" fill="#aaa">›</text>
+    <rect x="10" y="360" width="370" height="90" rx="12" fill="#fff"/>
+    <text x="26" y="395" font-size="18" font-weight="700" fill="#111">Clementine Bauch</text>
+    <text x="26" y="421" font-size="14" fill="#666">Nathan@yesenia.net</text>
+    <text x="26" y="441" font-size="13" fill="#777">Romaguera-Jacobson</text>
+    <text x="352" y="411" font-size="24" fill="#aaa">›</text>
+  </g>
+  <text x="195" y="812" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#888">Illustrative success preview — not a simulator capture</text>
+</svg>

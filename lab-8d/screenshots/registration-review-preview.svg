@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="430" height="920" viewBox="0 0 430 920" role="img" aria-labelledby="title description">
+  <title id="title">Illustrative registration review screen preview</title>
+  <desc id="description">A review form showing attendee, ticket and preferences with edit and confirm controls. Illustrative preview, not a simulator capture.</desc>
+  <rect width="430" height="920" fill="#f2f2f7"/>
+  <rect x="14" y="12" width="402" height="896" rx="48" fill="#111318"/>
+  <rect x="25" y="23" width="380" height="874" rx="40" fill="#f2f2f7"/>
+  <rect x="150" y="31" width="130" height="28" rx="14" fill="#111318"/>
+  <g font-family="Arial, sans-serif">
+    <text x="54" y="91" font-size="14" fill="#25252a">9:41</text>
+    <text x="59" y="145" font-size="15" fill="#3157bd">Edit</text>
+    <text x="215" y="145" text-anchor="middle" font-size="17" font-weight="700" fill="#17171b">Review</text>
+    <text x="47" y="203" font-size="12" font-weight="700" fill="#66666e">ATTENDEE</text>
+    <rect x="42" y="215" width="346" height="110" rx="14" fill="#ffffff"/>
+    <text x="60" y="252" font-size="13" fill="#777780">Name</text>
+    <text x="365" y="252" text-anchor="end" font-size="14" fill="#25252a">Anish Kumar</text>
+    <line x1="60" y1="269" x2="370" y2="269" stroke="#dedee3"/>
+    <text x="60" y="301" font-size="13" fill="#777780">Email</text>
+    <text x="365" y="301" text-anchor="end" font-size="14" fill="#25252a">anish@example.com</text>
+    <text x="47" y="367" font-size="12" font-weight="700" fill="#66666e">TICKET</text>
+    <rect x="42" y="379" width="346" height="57" rx="14" fill="#ffffff"/>
+    <text x="60" y="414" font-size="13" fill="#777780">Type</text>
+    <text x="365" y="414" text-anchor="end" font-size="14" fill="#25252a">Student</text>
+    <text x="47" y="478" font-size="12" font-weight="700" fill="#66666e">PREFERENCES</text>
+    <rect x="42" y="490" width="346" height="106" rx="14" fill="#ffffff"/>
+    <text x="60" y="527" font-size="13" fill="#777780">Accessibility support</text>
+    <text x="365" y="527" text-anchor="end" font-size="14" fill="#25252a">Requested</text>
+    <line x1="60" y1="544" x2="370" y2="544" stroke="#dedee3"/>
+    <text x="60" y="574" font-size="13" fill="#25252a">Please provide step-free access.</text>
+    <rect x="42" y="625" width="346" height="52" rx="14" fill="#3157bd"/>
+    <text x="215" y="658" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff">Confirm registration</text>
+    <text x="215" y="861" text-anchor="middle" font-size="10" fill="#74747c">ILLUSTRATIVE PREVIEW · NOT A SIMULATOR CAPTURE</text>
+  </g>
+</svg>

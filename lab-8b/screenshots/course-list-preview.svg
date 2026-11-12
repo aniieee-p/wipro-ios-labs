@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="430" height="900" viewBox="0 0 430 900" role="img" aria-labelledby="title description">
+  <title id="title">Illustrative course list screen preview</title>
+  <desc id="description">A SwiftUI navigation list with three courses and an info toolbar button. Illustrative preview, not an iOS simulator capture.</desc>
+  <rect width="430" height="900" fill="#f2f2f7"/>
+  <rect x="14" y="12" width="402" height="876" rx="48" fill="#111318"/>
+  <rect x="25" y="23" width="380" height="854" rx="40" fill="#f2f2f7"/>
+  <rect x="150" y="31" width="130" height="28" rx="14" fill="#111318"/>
+  <text x="54" y="91" font-family="Arial, sans-serif" font-size="14" fill="#25252a">9:41</text>
+  <text x="54" y="151" font-family="Arial, sans-serif" font-size="32" font-weight="700" fill="#15151a">Courses</text>
+  <circle cx="370" cy="142" r="20" fill="#ffffff"/>
+  <text x="370" y="149" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" fill="#3157bd">i</text>
+  <g font-family="Arial, sans-serif">
+    <rect x="42" y="184" width="346" height="166" rx="14" fill="#ffffff"/>
+    <text x="62" y="221" font-size="18" font-weight="700" fill="#17171b">Swift Fundamentals</text>
+    <text x="62" y="250" font-size="15" fill="#686870">A. Morgan</text>
+    <text x="62" y="276" font-size="14" fill="#777780">4 weeks</text>
+    <text x="365" y="253" text-anchor="middle" font-size="27" fill="#85858d">›</text>
+    <rect x="42" y="360" width="346" height="166" rx="14" fill="#ffffff"/>
+    <text x="62" y="397" font-size="18" font-weight="700" fill="#17171b">UIKit Essentials</text>
+    <text x="62" y="426" font-size="15" fill="#686870">J. Lee</text>
+    <text x="62" y="452" font-size="14" fill="#777780">3 weeks</text>
+    <text x="365" y="429" text-anchor="middle" font-size="27" fill="#85858d">›</text>
+    <rect x="42" y="536" width="346" height="166" rx="14" fill="#ffffff"/>
+    <text x="62" y="573" font-size="18" font-weight="700" fill="#17171b">Swift Concurrency</text>
+    <text x="62" y="602" font-size="15" fill="#686870">R. Patel</text>
+    <text x="62" y="628" font-size="14" fill="#777780">2 weeks</text>
+    <text x="365" y="605" text-anchor="middle" font-size="27" fill="#85858d">›</text>
+    <text x="215" y="835" text-anchor="middle" font-size="12" fill="#74747c">ILLUSTRATIVE PREVIEW · NOT A SIMULATOR CAPTURE</text>
+  </g>
+</svg>

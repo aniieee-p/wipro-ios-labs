@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="430" height="920" viewBox="0 0 430 920" role="img" aria-labelledby="title description">
+  <title id="title">Illustrative event registration form preview</title>
+  <desc id="description">A SwiftUI event form with attendee fields, ticket picker, preference toggle, optional notes, terms toggle, validation, and review button. Illustrative preview, not a simulator capture.</desc>
+  <rect width="430" height="920" fill="#f2f2f7"/>
+  <rect x="14" y="12" width="402" height="896" rx="48" fill="#111318"/>
+  <rect x="25" y="23" width="380" height="874" rx="40" fill="#f2f2f7"/>
+  <rect x="150" y="31" width="130" height="28" rx="14" fill="#111318"/>
+  <g font-family="Arial, sans-serif">
+    <text x="54" y="91" font-size="14" fill="#25252a">9:41</text>
+    <text x="215" y="143" text-anchor="middle" font-size="17" font-weight="700" fill="#17171b">Event Registration</text>
+    <rect x="42" y="167" width="346" height="111" rx="14" fill="#ffffff"/>
+    <text x="60" y="199" font-size="19" font-weight="700" fill="#202c4a">✦ Swift Summit 2026</text>
+    <text x="60" y="224" font-size="13" fill="#64646d">A day of ideas, workshops, and community.</text>
+    <text x="60" y="251" font-size="12" fill="#64646d">▣ Saturday, November 21 · 9:00 AM</text>
+    <text x="47" y="310" font-size="12" font-weight="700" fill="#66666e">ATTENDEE</text>
+    <rect x="42" y="321" width="346" height="121" rx="14" fill="#ffffff"/>
+    <text x="60" y="356" font-size="15" fill="#777780">Full name</text>
+    <line x1="60" y1="373" x2="370" y2="373" stroke="#dedee3"/>
+    <text x="60" y="405" font-size="15" fill="#777780">Email address</text>
+    <text x="60" y="429" font-size="11" fill="#c33339">ⓘ Enter your email address.</text>
+    <text x="47" y="475" font-size="12" font-weight="700" fill="#66666e">TICKET</text>
+    <rect x="42" y="486" width="346" height="54" rx="12" fill="#ffffff"/>
+    <text x="60" y="519" font-size="14" fill="#25252a">Ticket type</text>
+    <text x="365" y="519" text-anchor="end" font-size="14" fill="#777780">Choose a ticket  ›</text>
+    <text x="47" y="576" font-size="12" font-weight="700" fill="#66666e">PREFERENCES</text>
+    <rect x="42" y="588" width="346" height="118" rx="14" fill="#ffffff"/>
+    <text x="60" y="623" font-size="13" fill="#25252a">I need accessibility support</text>
+    <rect x="326" y="606" width="42" height="24" rx="12" fill="#c7c7cc"/>
+    <circle cx="338" cy="618" r="9" fill="#ffffff"/>
+    <text x="60" y="656" font-size="12" fill="#777780">Additional notes (optional)</text>
+    <text x="60" y="684" font-size="13" fill="#777780">Share access or dietary requests</text>
+    <rect x="42" y="722" width="346" height="54" rx="14" fill="#ffffff"/>
+    <text x="60" y="755" font-size="13" fill="#25252a">I agree to the event terms</text>
+    <rect x="326" y="737" width="42" height="24" rx="12" fill="#c7c7cc"/>
+    <circle cx="338" cy="749" r="9" fill="#ffffff"/>
+    <rect x="42" y="790" width="346" height="48" rx="14" fill="#a9b4d2"/>
+    <text x="215" y="820" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff">Review registration  ›</text>
+    <text x="215" y="861" text-anchor="middle" font-size="10" fill="#74747c">ILLUSTRATIVE PREVIEW · NOT A SIMULATOR CAPTURE</text>
+  </g>
+</svg>
