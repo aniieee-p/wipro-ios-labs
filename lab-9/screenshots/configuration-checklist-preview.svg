@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="430" height="920" viewBox="0 0 430 920" role="img" aria-labelledby="title description">
+  <title id="title">Illustrative configuration checklist app preview</title>
+  <desc id="description">A SwiftUI configuration audit checklist with local toggles and progress. Illustrative preview, not a simulator capture.</desc>
+  <rect width="430" height="920" fill="#f2f2f7"/>
+  <rect x="14" y="12" width="402" height="896" rx="48" fill="#111318"/>
+  <rect x="25" y="23" width="380" height="874" rx="40" fill="#f2f2f7"/>
+  <rect x="150" y="31" width="130" height="28" rx="14" fill="#111318"/>
+  <g font-family="Arial, sans-serif">
+    <text x="54" y="91" font-size="14" fill="#25252a">9:41</text>
+    <text x="215" y="145" text-anchor="middle" font-size="17" font-weight="700" fill="#17171b">Lab 9</text>
+    <rect x="42" y="169" width="346" height="137" rx="14" fill="#ffffff"/>
+    <text x="60" y="205" font-size="20" font-weight="700" fill="#202c4a">✓ Configuration Audit</text>
+    <text x="60" y="232" font-size="13" fill="#64646d">A local checklist for reviewing iOS app</text>
+    <text x="60" y="252" font-size="13" fill="#64646d">settings. No device permissions required.</text>
+    <rect x="60" y="269" width="310" height="7" rx="4" fill="#e1e1e7"/>
+    <rect x="60" y="269" width="95" height="7" rx="4" fill="#3157bd"/>
+    <text x="60" y="295" font-size="11" fill="#777780">2 of 7 checks complete</text>
+    <text x="48" y="346" font-size="12" font-weight="700" fill="#66666e">PROJECT REVIEW</text>
+    <g fill="#ffffff">
+      <rect x="42" y="359" width="346" height="69" rx="12"/>
+      <rect x="42" y="435" width="346" height="69" rx="12"/>
+      <rect x="42" y="511" width="346" height="69" rx="12"/>
+      <rect x="42" y="587" width="346" height="69" rx="12"/>
+      <rect x="42" y="663" width="346" height="69" rx="12"/>
+    </g>
+    <text x="58" y="388" font-size="13" font-weight="600" fill="#25252a">Inspect app target</text>
+    <text x="58" y="409" font-size="11" fill="#777780">Confirm the application target and build phases.</text>
+    <rect x="327" y="379" width="40" height="23" rx="12" fill="#3157bd"/>
+    <circle cx="355" cy="390" r="9" fill="#ffffff"/>
+    <text x="58" y="464" font-size="13" font-weight="600" fill="#25252a">Check bundle identifier</text>
+    <text x="58" y="485" font-size="11" fill="#777780">Use a unique reverse-DNS identifier.</text>
+    <rect x="327" y="455" width="40" height="23" rx="12" fill="#3157bd"/>
+    <circle cx="355" cy="466" r="9" fill="#ffffff"/>
+    <text x="58" y="540" font-size="13" font-weight="600" fill="#25252a">Check version and build</text>
+    <text x="58" y="561" font-size="11" fill="#777780">Verify version and incrementing build number.</text>
+    <rect x="327" y="531" width="40" height="23" rx="12" fill="#c7c7cc"/>
+    <circle cx="339" cy="542" r="9" fill="#ffffff"/>
+    <text x="58" y="616" font-size="13" font-weight="600" fill="#25252a">Review signing settings</text>
+    <text x="58" y="637" font-size="11" fill="#777780">Never commit certificates or private keys.</text>
+    <rect x="327" y="607" width="40" height="23" rx="12" fill="#c7c7cc"/>
+    <circle cx="339" cy="618" r="9" fill="#ffffff"/>
+    <text x="58" y="692" font-size="13" font-weight="600" fill="#25252a">Review privacy descriptions</text>
+    <text x="58" y="713" font-size="11" fill="#777780">Add purpose text only for permissions in use.</text>
+    <rect x="327" y="683" width="40" height="23" rx="12" fill="#c7c7cc"/>
+    <circle cx="339" cy="694" r="9" fill="#ffffff"/>
+    <rect x="42" y="750" width="346" height="66" rx="14" fill="#ffffff"/>
+    <text x="60" y="779" font-size="13" fill="#25252a">⛨ No permissions requested</text>
+    <text x="60" y="800" font-size="11" fill="#777780">No photos, location, camera, contacts, or network.</text>
+    <text x="215" y="862" text-anchor="middle" font-size="10" fill="#74747c">ILLUSTRATIVE PREVIEW · NOT A SIMULATOR CAPTURE</text>
+  </g>
+</svg>
