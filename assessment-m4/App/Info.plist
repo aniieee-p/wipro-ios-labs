@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<!--
+  Info.plist — App Configuration (R4)
+  ====================================
+  This file is read by the OS at launch and by the App Store on submission.
+  Every key's purpose is documented below.
+
+  CFBundleIdentifier
+    Unique reverse-DNS identifier for this app: com.wipro.assessmentm4
+    Set the matching value in Xcode > target > Signing & Capabilities.
+
+  CFBundleShortVersionString  (Marketing version, e.g. "1.0")
+    The user-visible version shown on the App Store and in Settings.
+    Increment for every public release.
+
+  CFBundleVersion  (Build number, e.g. "1")
+    An internal counter incremented for every build uploaded to TestFlight
+    or the App Store. Must be a monotonically increasing integer string.
+
+  MinimumOSVersion / IPHONEOS_DEPLOYMENT_TARGET
+    The lowest iOS version that can install this app.
+    Set to 16.0 so NavigationStack (iOS 16+) is available.
+    Change this in Xcode > target > General > Minimum Deployments.
+
+  UILaunchScreen
+    Declares the launch screen configuration. An empty dict uses the
+    default solid-colour launch screen.
+
+  Privacy usage description keys (none required here — examples only)
+    If you add camera, photo library, location, or contacts access:
+      NSCameraUsageDescription            → plain-language reason string
+      NSPhotoLibraryUsageDescription      → plain-language reason string
+      NSLocationWhenInUseUsageDescription → plain-language reason string
+      NSContactsUsageDescription          → plain-language reason string
+    The OS shows these strings in the system permission alert.
+    Omitting a required key causes a crash on first permission request.
+-->
+<dict>
+    <key>CFBundleDevelopmentRegion</key>
+    <string>$(DEVELOPMENT_LANGUAGE)</string>
+
+    <key>CFBundleExecutable</key>
+    <string>$(EXECUTABLE_NAME)</string>
+
+    <!-- Bundle Identifier — change to match your team in Xcode -->
+    <key>CFBundleIdentifier</key>
+    <string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+
+    <key>CFBundleInfoDictionaryVersion</key>
+    <string>6.0</string>
+
+    <key>CFBundleName</key>
+    <string>$(PRODUCT_NAME)</string>
+
+    <key>CFBundlePackageType</key>
+    <string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
+
+    <!-- Marketing version: bump for each release (1.0, 1.1, 2.0, …) -->
+    <key>CFBundleShortVersionString</key>
+    <string>1.0</string>
+
+    <!-- Build number: increment for every archive / TestFlight upload -->
+    <key>CFBundleVersion</key>
+    <string>1</string>
+
+    <!-- Deployment target: NavigationStack requires iOS 16+ -->
+    <key>MinimumOSVersion</key>
+    <string>16.0</string>
+
+    <!-- Launch screen: empty dict = solid system background colour -->
+    <key>UILaunchScreen</key>
+    <dict/>
+
+    <!-- Supported orientations: portrait only (adjust if landscape needed) -->
+    <key>UISupportedInterfaceOrientations</key>
+    <array>
+        <string>UIInterfaceOrientationPortrait</string>
+    </array>
+
+    <!--
+    Privacy keys (add only the ones your app actually uses):
+
+    <key>NSCameraUsageDescription</key>
+    <string>Used to scan book barcodes.</string>
+
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>Used to attach a cover photo to your reading entry.</string>
+
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>Used to find bookshops near your current location.</string>
+    -->
+</dict>
+</plist>
