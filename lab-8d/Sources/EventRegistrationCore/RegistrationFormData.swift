@@ -1,3 +1,4 @@
+
 import Foundation
 
 public enum TicketType: String, CaseIterable, Identifiable, Sendable {
@@ -5,7 +6,9 @@ public enum TicketType: String, CaseIterable, Identifiable, Sendable {
     case student = "Student"
     case vip = "VIP"
 
-    public var id: Self { self }
+    public var id: String {
+        rawValue
+    }
 }
 
 public struct RegistrationFormData: Equatable, Sendable {
@@ -50,34 +53,31 @@ public struct RegistrationValidation: Equatable, Sendable {
             && termsMessage == nil
     }
 
-    fileprivate init(form: RegistrationFormData) {
-        let name = form.fullName.trimmingCharacters(in: .whitespacesAndNewlines)
+    init(form: RegistrationFormData) {
+        let name = form.fullName.trimmingCharacters(
+            in: .whitespacesAndNewlines
+        )
+
         nameMessage = name.isEmpty ? "Enter your name." : nil
-        emailMessage = Self.emailMessage(for: form.email)
-        ticketMessage = form.ticketType == nil ? "Choose a ticket type." : nil
-        termsMessage = form.acceptsTerms ? nil : "Accept the terms to continue."
-    }
 
-    private static func emailMessage(for value: String) -> String? {
-        let email = value.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !email.isEmpty else {
-            return "Enter your email address."
+        ticketMessage = form.ticketType == nil
+            ? "Choose a ticket type."
+            : nil
+
+        termsMessage = form.acceptsTerms
+            ? nil
+            : "Accept the terms to continue."
+
+        let email = form.email.trimmingCharacters(
+            in: .whitespacesAndNewlines
+        )
+
+        if email.isEmpty {
+            emailMessage = "Enter your email address."
+        } else if !email.contains("@") || !email.contains(".") {
+            emailMessage = "Enter a valid email address."
+        } else {
+            emailMessage = nil
         }
-
-        guard !email.contains(where: { $0.isWhitespace }) else {
-            return "Email must not contain spaces."
-        }
-
-        let parts = email.split(separator: "@", omittingEmptySubsequences: false)
-        guard parts.count == 2,
-              !parts[0].isEmpty,
-              let domain = parts.last,
-              domain.contains("."),
-              !domain.hasPrefix("."),
-              !domain.hasSuffix(".") else {
-            return "Enter a valid email address."
-        }
-
-        return nil
     }
 }

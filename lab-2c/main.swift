@@ -37,7 +37,7 @@ extension String {
 // MARK: - R3: Generic Stack
 
 struct Stack<Element> {
-    private var items: [Element] = []
+    var items: [Element] = []
 
     mutating func push(_ item: Element) {
         items.append(item)
@@ -55,19 +55,6 @@ struct Stack<Element> {
         return items.isEmpty
     }
 }
-
-// MARK: - Optional Extension: Custom Protocol for Stack
-
-protocol StackOperations {
-    associatedtype Item
-
-    mutating func push(_ item: Item)
-    mutating func pop() -> Item?
-    func peek() -> Item?
-    var isEmpty: Bool { get }
-}
-
-extension Stack: StackOperations {}
 
 // MARK: - R4: Protocol-Constrained Generic Function
 
@@ -163,3 +150,28 @@ words.push("Swift")
 print("Top element: \(words.peek() ?? "Empty")")
 
 print("\n=== Lab 2C Completed ===")
+
+// Extension: Stack conforming to a custom protocol
+
+protocol StackLike {
+    associatedtype Item
+    mutating func push(_ item: Item)
+    mutating func pop() -> Item?
+    var isEmpty: Bool { get }
+}
+
+extension Stack: StackLike {}
+
+print("\n=== Extension: Stack with StackLike Protocol ===")
+
+var intStack2 = Stack<Int>()
+intStack2.push(1)
+intStack2.push(2)
+print("Int stack top: \(intStack2.pop() ?? 0)")
+print("Int stack empty: \(intStack2.isEmpty)")
+
+var stringStack2 = Stack<String>()
+stringStack2.push("Hello")
+stringStack2.push("World")
+print("String stack top: \(stringStack2.pop() ?? "")")
+print("String stack top now: \(stringStack2.peek() ?? "")")

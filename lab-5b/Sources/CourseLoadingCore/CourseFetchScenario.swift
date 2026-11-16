@@ -1,7 +1,7 @@
-public enum CourseFetchScenario: String, CaseIterable, Identifiable, Sendable {
+public enum CourseFetchScenario: String, CaseIterable, Identifiable {
     case success
     case empty
     case failure
 
-    public var id: Self { self }
+    public var id: String { rawValue }
 }

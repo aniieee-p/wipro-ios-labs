@@ -1,3 +1,4 @@
+
 import Foundation
 
 // MARK: - Book model (R1 sample data for NavigationStack list-detail flow)

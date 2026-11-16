@@ -1,6 +1,8 @@
+
 import Foundation
 
-public struct WorkResult: Equatable, Sendable {
+// Holds the result of one background operation
+public struct WorkResult: Sendable {
     public let name: String
     public let detail: String
 
@@ -10,64 +12,64 @@ public struct WorkResult: Equatable, Sendable {
     }
 }
 
-public final class ParallelWorkCoordinator: Sendable {
+// Runs two background tasks in parallel using GCD
+public class ParallelWorkCoordinator {
     public init() {}
 
-    public func run(
-        completion: @escaping @MainActor @Sendable ([WorkResult]) -> Void
-    ) {
+    public func run(completion: @escaping ([WorkResult]) -> Void) {
         let group = DispatchGroup()
-        let collector = ResultCollector()
-        let operations: [(name: String, delay: TimeInterval)] = [
-            ("Profile", 1.5),
-            ("Messages", 2.0)
-        ]
+        let results = ResultsStorage()
 
-        for operation in operations {
-            group.enter()
-            DispatchQueue.global(qos: .userInitiated).asyncAfter(
-                deadline: .now() + operation.delay
-            ) {
-                let result = WorkResult(
-                    name: operation.name,
-                    detail: "\(operation.name) data loaded after \(operation.delay) seconds."
-                )
-                collector.append(result)
-                log("Finished \(operation.name) operation", queue: "global(qos: .userInitiated)")
-                group.leave()
-            }
+        // Task 1: Profile
+        group.enter()
+        DispatchQueue.global().asyncAfter(deadline: .now() + 1.5) {
+            let result = WorkResult(
+                name: "Profile",
+                detail: "Profile data loaded after 1.5 seconds."
+            )
+
+            results.add(result)
+            print("[GCD] Profile finished on background thread")
+            group.leave()
         }
 
-        group.notify(queue: .global(qos: .userInitiated)) {
-            let results = collector.results
-            DispatchQueue.main.async {
-                log("Delivering \(results.count) results", queue: "main")
-                completion(results)
-            }
+        // Task 2: Messages
+        group.enter()
+        DispatchQueue.global().asyncAfter(deadline: .now() + 2.0) {
+            let result = WorkResult(
+                name: "Messages",
+                detail: "Messages data loaded after 2.0 seconds."
+            )
+
+            results.add(result)
+            print("[GCD] Messages finished on background thread")
+            group.leave()
         }
 
-        log("Scheduled \(operations.count) independent operations", queue: "global.asyncAfter")
+        group.notify(queue: .main) {
+            let sorted = results.getAll().sorted { $0.name < $1.name }
+            print("[GCD] Delivering \(sorted.count) results on main thread")
+            completion(sorted)
+        }
+
+        print("[GCD] Scheduled 2 parallel operations")
     }
 }
 
-private final class ResultCollector: @unchecked Sendable {
+// Safely stores results using a lock
+private final class ResultsStorage: @unchecked Sendable {
     private let lock = NSLock()
-    private var storedResults: [WorkResult] = []
+    private var results: [WorkResult] = []
 
-    func append(_ result: WorkResult) {
+    func add(_ result: WorkResult) {
         lock.lock()
-        storedResults.append(result)
+        results.append(result)
         lock.unlock()
     }
 
-    var results: [WorkResult] {
+    func getAll() -> [WorkResult] {
         lock.lock()
         defer { lock.unlock() }
-        return storedResults.sorted { $0.name < $1.name }
+        return results
     }
-}
-
-private func log(_ message: String, queue: String) {
-    let thread = Thread.isMainThread ? "main-thread" : "background-thread"
-    print("[GCD Lab] queue=\(queue) thread=\(thread) \(message)")
 }

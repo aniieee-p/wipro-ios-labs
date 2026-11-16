@@ -2,7 +2,7 @@ import XCTest
 @testable import CourseLoadingCore
 
 final class CourseCatalogServiceTests: XCTestCase {
-    private let service = CourseCatalogService(stepDelay: .milliseconds(1))
+    private let service = CourseCatalogService(stepDelay: 0.001)
 
     func testFetchSuccessReturnsCourses() async throws {
         let courses = try await service.fetchCourses(for: .success)

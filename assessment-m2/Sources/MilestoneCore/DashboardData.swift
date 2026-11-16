@@ -1,3 +1,4 @@
+
 import Foundation
 
 public struct CourseSummary: Equatable, Identifiable, Sendable {
@@ -37,13 +38,6 @@ public enum DashboardSource: String, Sendable {
     case announcements
 }
 
-public enum DashboardError: Error, Equatable, LocalizedError, Sendable {
+public enum DashboardError: Error, Equatable, Sendable {
     case unavailable(DashboardSource)
-
-    public var errorDescription: String? {
-        switch self {
-        case .unavailable(let source):
-            return "The \(source.rawValue) service is unavailable."
-        }
-    }
 }

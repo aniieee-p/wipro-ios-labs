@@ -1,20 +1,19 @@
-
 import Foundation
 
-// MARK: - R1: Array Operations
-
+// R1: Array Operations
 print("========== R1: ARRAY OPERATIONS ==========")
 
 var courses = ["Swift", "Python", "Java", "C++"]
-
 print("Original courses: \(courses)")
 
 // Add a course
 courses.append("JavaScript")
 print("After adding: \(courses)")
 
-// Remove a course
-courses.removeAll { $0 == "C++" }
+// Remove C++ from the array
+if let index = courses.firstIndex(of: "C++") {
+    courses.remove(at: index)
+}
 print("After removing C++: \(courses)")
 
 // Sort courses alphabetically
@@ -22,7 +21,12 @@ let sortedCourses = courses.sorted()
 print("Sorted courses: \(sortedCourses)")
 
 // Filter courses starting with J
-let filteredCourses = courses.filter { $0.hasPrefix("J") }
+var filteredCourses: [String] = []
+for course in courses {
+    if course.hasPrefix("J") {
+        filteredCourses.append(course)
+    }
+}
 print("Courses starting with J: \(filteredCourses)")
 
 // Search for a course
@@ -33,8 +37,7 @@ if courses.contains(searchCourse) {
     print("\(searchCourse) is not available.")
 }
 
-// MARK: - R2: Set Operations
-
+// R2: Set Operations
 print("\n========== R2: SET OPERATIONS ==========")
 
 let studentIDs = [101, 102, 103, 101, 104, 102, 105, 103]
@@ -44,8 +47,7 @@ print("Original student IDs: \(studentIDs)")
 print("Unique student IDs: \(uniqueStudentIDs.sorted())")
 print("Unique student count: \(uniqueStudentIDs.count)")
 
-// MARK: - R3: Dictionary Operations
-
+// R3: Dictionary Operations
 print("\n========== R3: DICTIONARY OPERATIONS ==========")
 
 let studentMarks: [Int: Int] = [
@@ -58,24 +60,31 @@ let studentMarks: [Int: Int] = [
 
 print("Student marks: \(studentMarks)")
 
-if let topper = studentMarks.max(by: { $0.value < $1.value }) {
-    print("Topper ID: \(topper.key)")
-    print("Highest marks: \(topper.value)")
+// Find the highest marks
+var topperID = 0
+var highestMarks = 0
+
+for (id, marks) in studentMarks {
+    if marks > highestMarks {
+        highestMarks = marks
+        topperID = id
+    }
 }
 
-let threshold = 75
-let belowThreshold = studentMarks
-    .filter { $0.value < threshold }
-    .sorted { $0.key < $1.key }
+print("Topper ID: \(topperID)")
+print("Highest marks: \(highestMarks)")
 
+// Find students below threshold
+let threshold = 75
 print("Students scoring below \(threshold):")
 
-for (studentID, marks) in belowThreshold {
-    print("Student ID: \(studentID), Marks: \(marks)")
+for id in studentMarks.keys.sorted() {
+    if let marks = studentMarks[id], marks < threshold {
+        print("Student ID: \(id), Marks: \(marks)")
+    }
 }
 
-// MARK: - R4: Enum and Switch
-
+// R4: Enum and Switch
 print("\n========== R4: ENUM AND SWITCH ==========")
 
 enum TaskPriority {
@@ -102,4 +111,30 @@ let tasks: [TaskPriority] = [.low, .medium, .high, .urgent]
 
 for task in tasks {
     print(priorityLabel(for: task))
+}
+
+// Extension: Enum with Associated Values
+
+enum APIResult {
+    case success(data: String)
+    case failure(message: String)
+}
+
+let result1 = APIResult.success(data: "Student list loaded.")
+let result2 = APIResult.failure(message: "Server not found.")
+
+print("\n========== EXTENSION: ENUM WITH ASSOCIATED VALUES ==========")
+
+switch result1 {
+case .success(let data):
+    print("Success: \(data)")
+case .failure(let message):
+    print("Error: \(message)")
+}
+
+switch result2 {
+case .success(let data):
+    print("Success: \(data)")
+case .failure(let message):
+    print("Error: \(message)")
 }

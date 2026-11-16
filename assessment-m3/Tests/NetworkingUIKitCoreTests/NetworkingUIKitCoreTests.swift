@@ -94,7 +94,7 @@ final class NetworkingUIKitCoreTests: XCTestCase {
         for _ in 0..<100 {
             switch model.state {
             case .idle, .loading:
-                try await Task.sleep(for: .milliseconds(10))
+                try await Task.sleep(nanoseconds: 10_000_000)
             case .success, .empty, .failure, .cancelled:
                 return
             }
@@ -142,7 +142,7 @@ private struct StubTransport: DirectoryTransport {
     }
 }
 
-private enum StubError: Error, LocalizedError, Sendable {
+private enum StubError: Error, LocalizedError {
     case offline
 
     var errorDescription: String? {

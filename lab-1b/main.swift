@@ -29,6 +29,13 @@ if let account = BankAccount(accountHolder: "Anisha Patel", initialBalance: 1000
 
     print("\nFinal Balance: \(account.currentBalance)")
 
+    // Extension: Read-only transaction history
+    print("\n--- Transaction History ---")
+    for entry in account.transactions {
+        print(entry)
+    }
+    // account.transactions = [] // This would cause a compile error — the history is read-only.
+
 } else {
     print("Account creation failed.")
 }

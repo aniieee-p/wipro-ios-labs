@@ -1,3 +1,4 @@
+
 import Foundation
 
 public enum CourseStatus: String, CaseIterable, Identifiable, Sendable {

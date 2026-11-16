@@ -13,7 +13,7 @@ struct Lab6App: App {
 @MainActor
 private struct DirectoryScreen: View {
     @StateObject private var model = DirectoryViewModel(
-        service: UserDirectoryService(transport: URLSessionDirectoryTransport())
+        service: UserDirectoryService()
     )
 
     var body: some View {

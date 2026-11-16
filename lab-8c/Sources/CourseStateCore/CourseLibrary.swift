@@ -1,9 +1,25 @@
-import Combine
+
 import Foundation
+
+#if canImport(Combine)
+import Combine
+#else
+public protocol ObservableObject: AnyObject {}
+
+@propertyWrapper
+public struct Published<Value> {
+    public var wrappedValue: Value
+
+    public init(wrappedValue: Value) {
+        self.wrappedValue = wrappedValue
+    }
+}
+#endif
 
 @MainActor
 public final class CourseLibrary: ObservableObject {
     public let courses: [Course]
+
     @Published public private(set) var favorites: FavoriteIDs
 
     private let defaults: UserDefaults
@@ -15,9 +31,16 @@ public final class CourseLibrary: ObservableObject {
     ) {
         self.courses = courses
         self.defaults = defaults
-        let savedIDs = Set(defaults.stringArray(forKey: favoritesKey) ?? [])
+
+        let savedIDs = Set(
+            defaults.stringArray(forKey: favoritesKey) ?? []
+        )
+
         let validCourseIDs = Set(courses.map(\.id))
-        favorites = FavoriteIDs(ids: savedIDs.intersection(validCourseIDs))
+
+        favorites = FavoriteIDs(
+            ids: savedIDs.intersection(validCourseIDs)
+        )
     }
 
     public func isFavorite(_ courseID: String) -> Bool {
@@ -31,6 +54,7 @@ public final class CourseLibrary: ObservableObject {
 
         var updatedFavorites = favorites
         updatedFavorites.setFavorite(isFavorite, for: courseID)
+
         guard updatedFavorites != favorites else {
             return
         }

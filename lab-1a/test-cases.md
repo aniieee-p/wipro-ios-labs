@@ -1,31 +1,23 @@
-
 # Lab 1A – Test Cases
 
-## Boundary Value and Validation Tests
+## Validation Test Table
 
-The following test cases verify subject mark validation, passing criteria, and attendance validation.
+| # | Input | Function | Expected Output | Actual Output |
+|---|-------|----------|-----------------|---------------|
+| 1 | mark = 0 | isValidMark | Valid | Valid |
+| 2 | mark = 100 | isValidMark | Valid | Valid |
+| 3 | mark = 30 | isValidMark | Valid (but FAIL result) | Valid mark, but FAIL |
+| 4 | mark = 105 | isValidMark | Invalid | Invalid |
+| 5 | mark = -5 | isValidMark | Invalid | Invalid |
+| 6 | attendance = 105.0 | isValidAttendance | Invalid | Invalid |
+| 7 | attendance = 0.0 | isValidAttendance | Valid | Valid |
+| 8 | attendance = 100.0 | isValidAttendance | Valid | Valid |
 
-| Test Case | Input | Expected Output |
-|---|---|---|
-| TC01 – Minimum mark | Subject mark: 0 | Valid mark |
-| TC02 – Maximum mark | Subject mark: 100 | Valid mark |
-| TC03 – Failing mark | Subject mark: 30 | Valid mark, but FAIL |
-| TC04 – Invalid high mark | Subject mark: 105 | Invalid mark |
-| TC05 – Invalid attendance | Attendance: 105% | Invalid attendance |
-| TC06 – Minimum attendance | Attendance: 0% | Valid attendance |
-| TC07 – Maximum attendance | Attendance: 100% | Valid attendance |
-| TC08 – Negative mark | Subject mark: -5 | Invalid mark |
+## Grade Calculation Test Table
 
-## Normal Student Result
-
-| Input | Expected Output |
-|---|---|
-| Marks: 85, 78, 90, 82, 88 | Total: 423/500 |
-| Attendance: 92.5% | Valid attendance |
-| All subject marks are at least 35 | PASS |
-| Total: 423, Maximum: 500 | Average: 84.6 |
-| Percentage: 84.6% | Grade: A |
-
-## Conclusion
-
-The test cases cover minimum and maximum marks, failing marks, invalid marks, and attendance boundary values. The normal student record also verifies the academic calculations and grading logic.
+| # | Marks (5 subjects) | Percentage | Expected Grade | Expected Result |
+|---|---------------------|------------|----------------|-----------------|
+| 1 | 85, 78, 90, 82, 88 | 84.6% | A | PASS |
+| 2 | 95, 95, 95, 95, 95 | 95.0% | A+ | PASS |
+| 3 | 70, 72, 74, 71, 73 | 72.0% | B | PASS |
+| 4 | 30, 25, 28, 32, 29 | 28.8% | F | FAIL |

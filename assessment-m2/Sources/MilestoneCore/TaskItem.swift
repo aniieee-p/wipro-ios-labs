@@ -1,3 +1,4 @@
+
 import Foundation
 
 public struct TaskItem: Identifiable, Equatable, Hashable, Sendable {
@@ -5,7 +6,11 @@ public struct TaskItem: Identifiable, Equatable, Hashable, Sendable {
     public var title: String
     public var isCompleted: Bool
 
-    public init(id: UUID = UUID(), title: String, isCompleted: Bool = false) {
+    public init(
+        id: UUID = UUID(),
+        title: String,
+        isCompleted: Bool = false
+    ) {
         self.id = id
         self.title = title
         self.isCompleted = isCompleted

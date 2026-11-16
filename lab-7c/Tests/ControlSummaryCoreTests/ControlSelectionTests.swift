@@ -5,14 +5,14 @@ final class ControlSelectionTests: XCTestCase {
     func testSummaryContainsEverySelectedControlValue() {
         let reminder = Date(timeIntervalSince1970: 0)
         let selection = ControlSelection(
-            name: "  Anish  ",
+            name: "  Anisha  ",
             notificationsEnabled: true,
             studyMode: "Focused",
             weeklyGoal: 8,
             reminderDate: reminder
         )
 
-        XCTAssertTrue(selection.summary.contains("Name: Anish"))
+        XCTAssertTrue(selection.summary.contains("Name: Anisha"))
         XCTAssertTrue(selection.summary.contains("Notifications: On"))
         XCTAssertTrue(selection.summary.contains("Study mode: Focused"))
         XCTAssertTrue(selection.summary.contains("Weekly goal: 8 hours"))

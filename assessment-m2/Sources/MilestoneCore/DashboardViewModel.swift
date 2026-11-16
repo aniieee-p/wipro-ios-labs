@@ -1,23 +1,16 @@
-#if canImport(Combine)
-import Combine
-#endif
+
 import Foundation
+
+public enum DashboardState: Equatable {
+    case idle
+    case loading
+    case success(DashboardData)
+    case failure(String)
+}
 
 @MainActor
 public final class DashboardViewModel {
-    public enum State: Equatable {
-        case idle
-        case loading
-        case success(DashboardData)
-        case failure(String)
-        case cancelled
-    }
-
-    #if canImport(Combine)
-    @Published public private(set) var state: State = .idle
-    #else
-    public private(set) var state: State = .idle
-    #endif
+    public private(set) var state: DashboardState = .idle
 
     private let service: DashboardService
     private var loadTask: Task<Void, Never>?
@@ -27,16 +20,31 @@ public final class DashboardViewModel {
     }
 
     public func load(failingSource: DashboardSource? = nil) {
-        guard loadTask == nil else { return }
+        loadTask?.cancel()
         state = .loading
-        loadTask = Task { [weak self] in
-            guard let self else { return }
-            defer { loadTask = nil }
+
+        let service = self.service
+
+        loadTask = Task {
             do {
-                state = .success(try await service.loadDashboard(failingSource: failingSource))
+                let dashboard = try await service.loadDashboard(
+                    failingSource: failingSource
+                )
+
+                guard !Task.isCancelled else {
+                    state = .idle
+                    return
+                }
+
+                state = .success(dashboard)
             } catch is CancellationError {
-                state = .cancelled
+                state = .idle
             } catch {
+                guard !Task.isCancelled else {
+                    state = .idle
+                    return
+                }
+
                 state = .failure(error.localizedDescription)
             }
         }
@@ -44,9 +52,7 @@ public final class DashboardViewModel {
 
     public func cancel() {
         loadTask?.cancel()
+        loadTask = nil
+        state = .idle
     }
 }
-
-#if canImport(Combine)
-extension DashboardViewModel: ObservableObject {}
-#endif

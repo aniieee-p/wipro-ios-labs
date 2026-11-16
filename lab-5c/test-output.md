@@ -1,9 +1,9 @@
-# Lab 5C test output
+﻿# Lab 5C test output
 
 Command:
 
 ```powershell
-swift test --skip-build --scratch-path "C:\Users\anish\OneDrive\Desktop\WIPRO\wipro-ios-labs\lab-5c\build-check"
+swift test --skip-build --scratch-path "C:\Users\Anisha\OneDrive\Desktop\WIPRO\wipro-ios-labs\lab-5c\build-check"
 ```
 
 Result on Windows with Swift 6.4.2:

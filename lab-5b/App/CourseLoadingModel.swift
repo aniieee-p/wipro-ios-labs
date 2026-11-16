@@ -10,7 +10,6 @@ final class CourseLoadingModel: ObservableObject {
         case success([Course])
         case empty
         case failure(String)
-        case cancelled
     }
 
     @Published private(set) var state: State = .idle
@@ -30,7 +29,7 @@ final class CourseLoadingModel: ObservableObject {
                 let courses = try await service.fetchCourses(for: scenario)
                 state = courses.isEmpty ? .empty : .success(courses)
             } catch is CancellationError {
-                state = .cancelled
+                state = .idle
             } catch {
                 state = .failure(error.localizedDescription)
             }

@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="430" height="920" viewBox="0 0 430 920" role="img" aria-labelledby="title description">
+  <title id="title">Course catalog screen illustrative preview</title>
+  <desc id="description">Illustrative course catalog with search and add actions for a student course planner. Not a simulator screenshot.</desc>
+  <rect width="430" height="920" fill="#f2f2f7"/>
+  <rect x="14" y="12" width="402" height="896" rx="48" fill="#111318"/>
+  <rect x="25" y="23" width="380" height="874" rx="40" fill="#f2f2f7"/>
+  <rect x="150" y="31" width="130" height="28" rx="14" fill="#111318"/>
+  <g font-family="Arial, sans-serif">
+    <text x="54" y="91" font-size="14" fill="#25252a">9:41</text>
+    <text x="215" y="145" text-anchor="middle" font-size="17" font-weight="700" fill="#17171b">Course Catalog</text>
+    <rect x="42" y="166" width="346" height="40" rx="10" fill="#e1e1e7"/>
+    <text x="59" y="192" font-size="14" fill="#777780">⌕  Course, instructor, or category</text>
+    <text x="48" y="242" font-size="12" fill="#686870">Choose courses that fit your week. Overlapping classes and plans over 18 credits are rejected.</text>
+    <text x="48" y="296" font-size="12" font-weight="700" fill="#66666e">AVAILABLE COURSES</text>
+    <g fill="#ffffff">
+      <rect x="42" y="309" width="346" height="116" rx="12"/>
+      <rect x="42" y="432" width="346" height="116" rx="12"/>
+      <rect x="42" y="555" width="346" height="116" rx="12"/>
+      <rect x="42" y="678" width="346" height="116" rx="12"/>
+    </g>
+    <text x="60" y="342" font-size="15" font-weight="600" fill="#25252a">Swift Foundations</text>
+    <text x="60" y="367" font-size="12" fill="#777780">Maya Chen · Programming</text>
+    <text x="60" y="396" font-size="12" fill="#777780">Monday, 9:00–10:30 AM · 3 credits</text>
+    <circle cx="353" cy="369" r="20" fill="#eaf0ff"/>
+    <text x="353" y="377" text-anchor="middle" font-size="25" fill="#3157bd">+</text>
+    <text x="60" y="465" font-size="15" font-weight="600" fill="#25252a">iOS Interface Design</text>
+    <text x="60" y="490" font-size="12" fill="#777780">Jordan Lee · Design</text>
+    <text x="60" y="519" font-size="12" fill="#777780">Monday, 11:00 AM–12:30 PM · 3 credits</text>
+    <circle cx="353" cy="492" r="20" fill="#eaf0ff"/>
+    <text x="353" y="500" text-anchor="middle" font-size="25" fill="#3157bd">+</text>
+    <text x="60" y="588" font-size="15" font-weight="600" fill="#25252a">Mobile Networking</text>
+    <text x="60" y="613" font-size="12" fill="#777780">Avery Patel · Engineering</text>
+    <text x="60" y="642" font-size="12" fill="#777780">Tuesday, 10:00 AM–12:00 PM · 4 credits</text>
+    <circle cx="353" cy="615" r="20" fill="#eaf0ff"/>
+    <text x="353" y="623" text-anchor="middle" font-size="25" fill="#3157bd">+</text>
+    <text x="60" y="711" font-size="15" font-weight="600" fill="#25252a">Swift Concurrency</text>
+    <text x="60" y="736" font-size="12" fill="#777780">Noah Kim · Programming</text>
+    <text x="60" y="765" font-size="12" fill="#777780">Tuesday, 11:00 AM–12:30 PM · 3 credits</text>
+    <circle cx="353" cy="738" r="20" fill="#eaf0ff"/>
+    <text x="353" y="746" text-anchor="middle" font-size="25" fill="#3157bd">+</text>
+    <text x="215" y="864" text-anchor="middle" font-size="10" fill="#74747c">ILLUSTRATIVE PREVIEW · NOT A SIMULATOR SCREENSHOT</text>
+  </g>
+</svg>

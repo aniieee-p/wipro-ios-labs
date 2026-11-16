@@ -5,30 +5,31 @@ import TaskListCore
 public struct TaskListScreen: View {
     @StateObject private var viewModel = TaskViewModel()
     @State private var newTaskTitle = ""
-    @State private var validationMessage: String?
+    @State private var showError = false
 
     public init() {}
 
     public var body: some View {
         NavigationStack {
             VStack(spacing: 16) {
+                // Add task row
                 HStack(spacing: 12) {
                     TextField("Add a task", text: $newTaskTitle)
                         .textFieldStyle(.roundedBorder)
-                        .accessibilityLabel("Task title")
                         .onSubmit(addTask)
 
                     Button("Add", action: addTask)
                         .buttonStyle(.borderedProminent)
                 }
 
-                if let validationMessage {
-                    Text(validationMessage)
+                if showError {
+                    Text("Please enter a task title.")
                         .font(.footnote)
                         .foregroundStyle(.red)
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }
 
+                // Filter picker
                 Picker("Filter", selection: $viewModel.selectedFilter) {
                     ForEach(TaskFilter.allCases) { filter in
                         Text(filter.rawValue).tag(filter)
@@ -36,6 +37,7 @@ public struct TaskListScreen: View {
                 }
                 .pickerStyle(.segmented)
 
+                // Task list
                 if viewModel.visibleTasks.isEmpty {
                     VStack(spacing: 8) {
                         Image(systemName: "checklist")
@@ -69,7 +71,6 @@ public struct TaskListScreen: View {
                                 .contentShape(Rectangle())
                             }
                             .buttonStyle(.plain)
-                            .accessibilityValue(task.isCompleted ? "Completed" : "Active")
                         }
                         .onDelete(perform: deleteTasks)
                     }
@@ -77,7 +78,7 @@ public struct TaskListScreen: View {
                 }
             }
             .padding()
-            .navigationTitle("MVVM Task List")
+            .navigationTitle("Task List")
             .toolbar {
                 EditButton()
             }
@@ -85,18 +86,20 @@ public struct TaskListScreen: View {
     }
 
     private func addTask() {
-        guard viewModel.addTask(title: newTaskTitle) else {
-            validationMessage = "Enter a non-empty task title."
-            return
+        let success = viewModel.addTask(title: newTaskTitle)
+        if success {
+            newTaskTitle = ""
+            showError = false
+        } else {
+            showError = true
         }
-
-        newTaskTitle = ""
-        validationMessage = nil
     }
 
     private func deleteTasks(at offsets: IndexSet) {
-        let tasksToDelete = offsets.map { viewModel.visibleTasks[$0] }
-        tasksToDelete.forEach { viewModel.deleteTask(id: $0.id) }
+        for index in offsets {
+            let task = viewModel.visibleTasks[index]
+            viewModel.deleteTask(id: task.id)
+        }
     }
 }
 #endif

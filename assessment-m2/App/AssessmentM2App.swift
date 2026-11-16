@@ -92,9 +92,6 @@ private struct AssessmentScreen: View {
         case .failure(let message):
             Label(message, systemImage: "exclamationmark.triangle")
                 .foregroundStyle(.red)
-        case .cancelled:
-            Label("Loading cancelled.", systemImage: "xmark.circle")
-                .foregroundStyle(.secondary)
         }
     }
 

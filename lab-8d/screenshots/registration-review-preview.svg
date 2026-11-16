@@ -12,10 +12,10 @@
     <text x="47" y="203" font-size="12" font-weight="700" fill="#66666e">ATTENDEE</text>
     <rect x="42" y="215" width="346" height="110" rx="14" fill="#ffffff"/>
     <text x="60" y="252" font-size="13" fill="#777780">Name</text>
-    <text x="365" y="252" text-anchor="end" font-size="14" fill="#25252a">Anish Kumar</text>
+    <text x="365" y="252" text-anchor="end" font-size="14" fill="#25252a">Anisha</text>
     <line x1="60" y1="269" x2="370" y2="269" stroke="#dedee3"/>
     <text x="60" y="301" font-size="13" fill="#777780">Email</text>
-    <text x="365" y="301" text-anchor="end" font-size="14" fill="#25252a">anish@example.com</text>
+    <text x="365" y="301" text-anchor="end" font-size="14" fill="#25252a">anisha@example.com</text>
     <text x="47" y="367" font-size="12" font-weight="700" fill="#66666e">TICKET</text>
     <rect x="42" y="379" width="346" height="57" rx="14" fill="#ffffff"/>
     <text x="60" y="414" font-size="13" fill="#777780">Type</text>

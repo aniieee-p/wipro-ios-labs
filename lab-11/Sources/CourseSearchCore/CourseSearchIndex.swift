@@ -1,6 +1,6 @@
 import Foundation
 
-public struct CourseSearchIndex: Sendable {
+public struct CourseSearchIndex {
     private let entries: [(course: Course, normalizedTitle: String)]
 
     public init(courses: [Course]) {

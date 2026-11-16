@@ -1,4 +1,20 @@
+
 import Foundation
+
+#if canImport(Combine)
+import Combine
+#else
+public protocol ObservableObject: AnyObject {}
+
+@propertyWrapper
+public struct Published<Value> {
+    public var wrappedValue: Value
+
+    public init(wrappedValue: Value) {
+        self.wrappedValue = wrappedValue
+    }
+}
+#endif
 
 public protocol CourseService {
     func fetchCourses() throws -> [Course]
@@ -11,16 +27,8 @@ public enum CourseLoadingState: Equatable, Sendable {
     case failed(String)
 }
 
-#if canImport(Combine)
-import Combine
-#endif
-
-public final class CourseListViewModel {
-    #if canImport(Combine)
+public final class CourseListViewModel: ObservableObject {
     @Published public private(set) var state: CourseLoadingState = .idle
-    #else
-    public private(set) var state: CourseLoadingState = .idle
-    #endif
 
     private let service: any CourseService
 
@@ -31,13 +39,14 @@ public final class CourseListViewModel {
     public func loadCourses() {
         do {
             let courses = try service.fetchCourses()
-            state = courses.isEmpty ? .empty : .loaded(courses)
+
+            if courses.isEmpty {
+                state = .empty
+            } else {
+                state = .loaded(courses)
+            }
         } catch {
             state = .failed(error.localizedDescription)
         }
     }
 }
-
-#if canImport(Combine)
-extension CourseListViewModel: ObservableObject {}
-#endif

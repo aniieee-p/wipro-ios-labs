@@ -12,13 +12,13 @@ public struct ProfileFormInput: Equatable, Sendable {
     }
 }
 
-public enum ProfileField: String, CaseIterable, Equatable, Sendable {
+public enum ProfileField: String, CaseIterable, Equatable {
     case name
     case email
     case course
 }
 
-public struct ProfileFormErrors: Equatable, Sendable {
+public struct ProfileFormErrors: Equatable {
     public let fields: [ProfileField: String]
 
     public init(fields: [ProfileField: String]) {

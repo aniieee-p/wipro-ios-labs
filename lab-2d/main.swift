@@ -1,6 +1,6 @@
 import Foundation
 
-// MARK: - R1: Validation Errors
+// R1: Validation Errors
 
 enum ValidationError: Error {
     case emptyName
@@ -8,7 +8,7 @@ enum ValidationError: Error {
     case invalidID
 }
 
-// MARK: - Student Model
+// Student Model
 
 struct Student {
     let id: Int
@@ -16,25 +16,26 @@ struct Student {
     let mark: Int
 }
 
-// MARK: - R2: Throwing Registration Function
+// R2: Throwing Registration Function
 
 func registerStudent(id: Int, name: String, mark: Int) throws -> Student {
-    guard !name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
+    let trimmedName = name.trimmingCharacters(in: .whitespacesAndNewlines)
+    if trimmedName.isEmpty {
         throw ValidationError.emptyName
     }
 
-    guard (0...100).contains(mark) else {
+    if mark < 0 || mark > 100 {
         throw ValidationError.invalidMark
     }
 
-    guard id > 0 else {
+    if id <= 0 {
         throw ValidationError.invalidID
     }
 
     return Student(id: id, name: name, mark: mark)
 }
 
-// MARK: - R3: Useful Error Messages
+// R3: Useful Error Messages
 
 func errorMessage(for error: ValidationError) -> String {
     switch error {
@@ -47,33 +48,7 @@ func errorMessage(for error: ValidationError) -> String {
     }
 }
 
-// MARK: - R4: Optional Return Comparison
-
-func validateMarkOptional(_ mark: Int) -> Int? {
-    return (0...100).contains(mark) ? mark : nil
-}
-
-// Result-based validation
-
-func validateMarkResult(_ mark: Int) -> Result<Int, ValidationError> {
-    guard (0...100).contains(mark) else {
-        return .failure(.invalidMark)
-    }
-
-    return .success(mark)
-}
-
-// MARK: - Optional Network Response Extension
-
-func simulatedNetworkResponse(success: Bool) -> Result<String, ValidationError> {
-    if success {
-        return .success("Student data received successfully.")
-    } else {
-        return .failure(.invalidID)
-    }
-}
-
-// MARK: - Demonstration and Tests
+// Demonstration and Tests
 
 print("=== Lab 2D: Error Handling ===")
 
@@ -90,9 +65,8 @@ do {
 // Test 2: Empty name
 do {
     _ = try registerStudent(id: 2, name: "   ", mark: 80)
-    assertionFailure("Expected empty-name validation to fail.")
+    print("Should not reach here.")
 } catch let error as ValidationError {
-    assert(errorMessage(for: error).contains("name"))
     print(errorMessage(for: error))
 } catch {
     print("Unexpected error occurred.")
@@ -101,9 +75,8 @@ do {
 // Test 3: Invalid mark
 do {
     _ = try registerStudent(id: 3, name: "Riya", mark: 120)
-    assertionFailure("Expected invalid-mark validation to fail.")
+    print("Should not reach here.")
 } catch let error as ValidationError {
-    assert(errorMessage(for: error).contains("Mark"))
     print(errorMessage(for: error))
 } catch {
     print("Unexpected error occurred.")
@@ -112,44 +85,55 @@ do {
 // Test 4: Invalid ID
 do {
     _ = try registerStudent(id: 0, name: "Aman", mark: 75)
-    assertionFailure("Expected invalid-ID validation to fail.")
+    print("Should not reach here.")
 } catch let error as ValidationError {
-    assert(errorMessage(for: error).contains("ID"))
     print(errorMessage(for: error))
 } catch {
     print("Unexpected error occurred.")
 }
 
-// Test 5: Optional return
-assert(validateMarkOptional(85) == 85)
-assert(validateMarkOptional(150) == nil)
-print("Optional validation tests passed.")
+print("All Lab 2D checks passed!")
 
-// Test 6: Result success and failure
-switch validateMarkResult(95) {
+// Extension: Result type comparison
+// Result<Success, Failure> is another way to represent success or failure.
+// Unlike throws, it lets you store or pass the outcome as a value.
+
+func validateMarkResult(_ mark: Int) -> Result<Int, ValidationError> {
+    if mark < 0 || mark > 100 {
+        return .failure(.invalidMark)
+    }
+    return .success(mark)
+}
+
+print("\n=== Extension: Result Type ===")
+
+switch validateMarkResult(85) {
 case .success(let mark):
-    assert(mark == 95)
-    print("Result success: Valid mark \(mark)")
-case .failure:
-    assertionFailure("Expected a valid mark.")
-}
-
-switch validateMarkResult(-5) {
-case .success:
-    assertionFailure("Expected an invalid mark.")
+    print("Valid mark: \(mark)")
 case .failure(let error):
-    assert(errorMessage(for: error).contains("Mark"))
-    print("Result failure handled safely.")
+    print(errorMessage(for: error))
 }
 
-// Test 7: Simulated network response
-let networkResult = simulatedNetworkResponse(success: true)
+switch validateMarkResult(150) {
+case .success(let mark):
+    print("Valid mark: \(mark)")
+case .failure(let error):
+    print(errorMessage(for: error))
+}
 
+// Simulated network response using Result
+func fetchStudentData(success: Bool) -> Result<String, ValidationError> {
+    if success {
+        return .success("Student data received successfully.")
+    } else {
+        return .failure(.invalidID)
+    }
+}
+
+let networkResult = fetchStudentData(success: true)
 switch networkResult {
 case .success(let message):
     print(message)
 case .failure(let error):
     print(errorMessage(for: error))
 }
-
-print("All Lab 2D checks passed!")

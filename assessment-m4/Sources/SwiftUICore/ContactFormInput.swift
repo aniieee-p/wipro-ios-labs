@@ -1,9 +1,7 @@
 import Foundation
 
-// MARK: - Contact form model (R3)
-
-/// The raw text values typed into the registration form.
-public struct ContactFormInput: Equatable, Sendable {
+// The raw text values typed into the contact form
+public struct ContactFormInput: Equatable {
     public let name: String
     public let email: String
     public let phone: String
@@ -17,28 +15,25 @@ public struct ContactFormInput: Equatable, Sendable {
     }
 }
 
-/// The fields that can carry a validation error.
-public enum ContactField: String, CaseIterable, Equatable, Sendable {
+// Fields that can have a validation error
+public enum ContactField: String, CaseIterable, Equatable {
     case name
     case email
     case phone
     case message
 }
 
-/// The set of validation errors for a submission attempt.
-public struct ContactFormErrors: Equatable, Sendable {
+// Holds the validation errors after a form submission
+public struct ContactFormErrors: Equatable {
     public let fields: [ContactField: String]
-    public var isEmpty: Bool { fields.isEmpty }
+    public var isEmpty: Bool { return fields.isEmpty }
 
     public init(fields: [ContactField: String] = [:]) {
         self.fields = fields
     }
 }
 
-// MARK: - Validator
-
 public enum ContactFormValidator {
-    /// Validates `input` and returns any field-level error messages.
     public static func validate(_ input: ContactFormInput) -> ContactFormErrors {
         var errors: [ContactField: String] = [:]
 
@@ -57,7 +52,7 @@ public enum ContactFormValidator {
         if input.phone.isEmpty {
             errors[.phone] = "Phone number is required."
         } else if !isValidPhone(input.phone) {
-            errors[.phone] = "Enter a valid phone number (digits, spaces, +, -)."
+            errors[.phone] = "Enter a valid phone number."
         }
 
         if input.message.isEmpty {
@@ -69,19 +64,25 @@ public enum ContactFormValidator {
         return ContactFormErrors(fields: errors)
     }
 
-    // MARK: Private helpers
-
     private static func isValidEmail(_ email: String) -> Bool {
-        let parts = email.split(separator: "@", omittingEmptySubsequences: false)
-        guard parts.count == 2, !parts[0].isEmpty else { return false }
-        let domain = parts[1].split(separator: ".", omittingEmptySubsequences: false)
-        return domain.count >= 2 && domain.allSatisfy { !$0.isEmpty }
+        let parts = email.split(separator: "@")
+        if parts.count != 2 { return false }
+        let local = String(parts[0])
+        let domain = String(parts[1])
+        return !local.isEmpty && domain.contains(".")
     }
 
     private static func isValidPhone(_ phone: String) -> Bool {
-        let allowed = CharacterSet.decimalDigits.union(CharacterSet(charactersIn: " +-()"))
-        guard phone.unicodeScalars.allSatisfy({ allowed.contains($0) }) else { return false }
-        let digits = phone.filter(\.isNumber)
-        return digits.count >= 7 && digits.count <= 15
+        var digitCount = 0
+        for char in phone {
+            if char.isNumber {
+                digitCount += 1
+            } else if char == " " || char == "+" || char == "-" || char == "(" || char == ")" {
+                // allowed characters
+            } else {
+                return false
+            }
+        }
+        return digitCount >= 7 && digitCount <= 15
     }
 }

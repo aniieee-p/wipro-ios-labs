@@ -1,61 +1,58 @@
-import Foundation
 
-public protocol DirectoryTransport: Sendable {
+import Foundation
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
+
+// Protocol so tests can inject a stub instead of hitting the real network
+public protocol DirectoryTransport {
     func data(from url: URL) async throws -> (Data, Int)
 }
 
-public enum DirectoryError: Error, Equatable, LocalizedError, Sendable {
+// Default transport using URLSession
+public struct URLSessionDirectoryTransport: DirectoryTransport {
+    public init() {}
+
+    public func data(from url: URL) async throws -> (Data, Int) {
+        let (data, response) = try await URLSession.shared.data(from: url)
+        let statusCode = (response as? HTTPURLResponse)?.statusCode ?? 0
+
+        return (data, statusCode)
+    }
+}
+
+public enum DirectoryError: Error, Equatable {
     case invalidURL
     case httpStatus(Int)
     case decodingFailed
     case networkFailure(String)
-
-    public var errorDescription: String? {
-        switch self {
-        case .invalidURL:
-            return "The directory URL is invalid."
-        case .httpStatus(let code):
-            return "The server returned HTTP \(code)."
-        case .decodingFailed:
-            return "The server response could not be read as a user directory."
-        case .networkFailure(let message):
-            return "Network request failed: \(message)"
-        }
-    }
 }
 
-public struct UserDirectoryService: Sendable {
-    public static let defaultEndpoint = "https://jsonplaceholder.typicode.com/users"
+public struct UserDirectoryService {
+    public static let endpoint =
+        "https://jsonplaceholder.typicode.com/users"
 
-    private let endpoint: String
+    private let endpointString: String
     private let transport: any DirectoryTransport
 
     public init(
-        endpoint: String = UserDirectoryService.defaultEndpoint,
-        transport: any DirectoryTransport
+        endpoint: String = UserDirectoryService.endpoint,
+        transport: any DirectoryTransport = URLSessionDirectoryTransport()
     ) {
-        self.endpoint = endpoint
+        self.endpointString = endpoint
         self.transport = transport
     }
 
     public func fetchUsers() async throws -> [DirectoryUser] {
-        guard
-            var components = URLComponents(string: endpoint),
-            components.scheme == "https",
-            components.host != nil
-        else {
-            throw DirectoryError.invalidURL
-        }
-        components.queryItems = nil
-
-        guard let requestURL = components.url else {
+        guard let url = URL(string: endpointString) else {
             throw DirectoryError.invalidURL
         }
 
         let data: Data
         let statusCode: Int
+
         do {
-            (data, statusCode) = try await transport.data(from: requestURL)
+            (data, statusCode) = try await transport.data(from: url)
         } catch is CancellationError {
             throw CancellationError()
         } catch {

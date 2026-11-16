@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="430" height="920" viewBox="0 0 430 920" role="img" aria-labelledby="title description">
+  <title id="title">Course Planner home screen illustrative preview</title>
+  <desc id="description">Illustrative SwiftUI dashboard with credit totals, navigation to catalog and schedule, and planned courses. Not a simulator screenshot.</desc>
+  <rect width="430" height="920" fill="#f2f2f7"/>
+  <rect x="14" y="12" width="402" height="896" rx="48" fill="#111318"/>
+  <rect x="25" y="23" width="380" height="874" rx="40" fill="#f2f2f7"/>
+  <rect x="150" y="31" width="130" height="28" rx="14" fill="#111318"/>
+  <g font-family="Arial, sans-serif">
+    <text x="54" y="91" font-size="14" fill="#25252a">9:41</text>
+    <text x="215" y="145" text-anchor="middle" font-size="17" font-weight="700" fill="#17171b">Course Planner</text>
+    <text x="48" y="205" font-size="29" font-weight="700" fill="#1b2435">Plan a week</text>
+    <text x="48" y="239" font-size="29" font-weight="700" fill="#1b2435">that works.</text>
+    <text x="48" y="273" font-size="14" fill="#686870">Build a balanced course schedule and keep an</text>
+    <text x="48" y="294" font-size="14" fill="#686870">eye on time conflicts and credits.</text>
+    <rect x="42" y="319" width="346" height="96" rx="16" fill="#ffffff"/>
+    <text x="100" y="361" text-anchor="middle" font-size="24" font-weight="700" fill="#222b43">6</text>
+    <text x="100" y="386" text-anchor="middle" font-size="12" fill="#777780">Planned</text>
+    <line x1="157" y1="339" x2="157" y2="395" stroke="#dedee3"/>
+    <text x="215" y="361" text-anchor="middle" font-size="24" font-weight="700" fill="#222b43">12</text>
+    <text x="215" y="386" text-anchor="middle" font-size="12" fill="#777780">Available</text>
+    <line x1="273" y1="339" x2="273" y2="395" stroke="#dedee3"/>
+    <text x="330" y="361" text-anchor="middle" font-size="24" font-weight="700" fill="#222b43">18</text>
+    <text x="330" y="386" text-anchor="middle" font-size="12" fill="#777780">Limit</text>
+    <text x="48" y="462" font-size="12" font-weight="700" fill="#66666e">YOUR PLANNER</text>
+    <rect x="42" y="475" width="346" height="56" rx="12" fill="#ffffff"/>
+    <text x="61" y="510" font-size="15" fill="#25252a">▤  Explore course catalog</text>
+    <text x="367" y="510" text-anchor="middle" font-size="22" fill="#8a8a91">›</text>
+    <rect x="42" y="537" width="346" height="56" rx="12" fill="#ffffff"/>
+    <text x="61" y="572" font-size="15" fill="#25252a">▦  View weekly schedule</text>
+    <text x="367" y="572" text-anchor="middle" font-size="22" fill="#8a8a91">›</text>
+    <text x="48" y="639" font-size="12" font-weight="700" fill="#66666e">PLANNED COURSES</text>
+    <rect x="42" y="651" width="346" height="83" rx="12" fill="#ffffff"/>
+    <text x="60" y="682" font-size="15" font-weight="600" fill="#25252a">Swift Foundations</text>
+    <text x="60" y="706" font-size="12" fill="#777780">Maya Chen · Monday, 9:00–10:30 AM · 3 credits</text>
+    <rect x="42" y="741" width="346" height="83" rx="12" fill="#ffffff"/>
+    <text x="60" y="772" font-size="15" font-weight="600" fill="#25252a">Mobile Networking</text>
+    <text x="60" y="796" font-size="12" fill="#777780">Avery Patel · Tuesday, 10:00 AM–12:00 PM · 4 credits</text>
+    <text x="215" y="864" text-anchor="middle" font-size="10" fill="#74747c">ILLUSTRATIVE PREVIEW · NOT A SIMULATOR SCREENSHOT</text>
+  </g>
+</svg>

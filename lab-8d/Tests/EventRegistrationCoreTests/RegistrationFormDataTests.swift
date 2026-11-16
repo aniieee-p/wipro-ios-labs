@@ -14,8 +14,8 @@ final class RegistrationFormDataTests: XCTestCase {
 
     func testCompleteFormWithValidEmailCanBeSubmitted() {
         let form = RegistrationFormData(
-            fullName: "  Anish Kumar  ",
-            email: "anish@example.com",
+            fullName: "  Anisha  ",
+            email: "anisha@example.com",
             ticketType: .student,
             acceptsTerms: true
         )
@@ -26,7 +26,7 @@ final class RegistrationFormDataTests: XCTestCase {
     func testRejectsMalformedEmailAddresses() {
         for email in ["not-an-email", "a@@example.com", "a@.example.com", "a@example.", "a @example.com"] {
             let form = RegistrationFormData(
-                fullName: "Anish",
+                fullName: "Anisha",
                 email: email,
                 ticketType: .general,
                 acceptsTerms: true
@@ -40,7 +40,7 @@ final class RegistrationFormDataTests: XCTestCase {
     func testWhitespaceOnlyNameIsInvalid() {
         let form = RegistrationFormData(
             fullName: " \n ",
-            email: "anish@example.com",
+            email: "anisha@example.com",
             ticketType: .general,
             acceptsTerms: true
         )
@@ -52,8 +52,8 @@ final class RegistrationFormDataTests: XCTestCase {
     func testLongOptionalNotesArePreservedWithoutInvalidatingForm() {
         let longNotes = String(repeating: "Please provide step-free access. ", count: 300)
         let form = RegistrationFormData(
-            fullName: "Anish",
-            email: "anish@example.com",
+            fullName: "Anisha",
+            email: "anisha@example.com",
             ticketType: .general,
             notes: longNotes,
             acceptsTerms: true
@@ -65,8 +65,8 @@ final class RegistrationFormDataTests: XCTestCase {
 
     func testAccessibilityToggleDoesNotRequireAdditionalInformation() {
         let form = RegistrationFormData(
-            fullName: "Anish",
-            email: "anish@example.com",
+            fullName: "Anisha",
+            email: "anisha@example.com",
             ticketType: .vip,
             needsAccessibilitySupport: true,
             acceptsTerms: true

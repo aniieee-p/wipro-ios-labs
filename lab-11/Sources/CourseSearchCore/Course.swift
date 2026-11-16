@@ -1,6 +1,6 @@
 import Foundation
 
-public struct Course: Equatable, Identifiable, Sendable {
+public struct Course: Equatable, Identifiable {
     public let id: Int
     public let title: String
 
@@ -10,7 +10,7 @@ public struct Course: Equatable, Identifiable, Sendable {
     }
 
     public static func sampleCatalog(count: Int) -> [Course] {
-        precondition(count >= 0)
+        guard count >= 0 else { return [] }
         let topics = [
             "Swift Fundamentals",
             "UIKit Essentials",

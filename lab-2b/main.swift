@@ -131,3 +131,39 @@ manager?.completion?()
 manager = nil
 
 print("\n=== Lab 2B Completed ===")
+
+// Extension: Retry Helper
+
+func retry(times: Int, operation: () throws -> Void) {
+    var lastError: Error? = nil
+    for attempt in 1...times {
+        do {
+            try operation()
+            print("Operation succeeded on attempt \(attempt).")
+            return
+        } catch {
+            lastError = error
+            print("Attempt \(attempt) failed: \(error.localizedDescription)")
+        }
+    }
+    print("All \(times) attempts failed. Last error: \(lastError?.localizedDescription ?? "unknown")")
+}
+
+print("\n=== Extension: Retry Helper ===")
+
+// Simple error for the retry demo
+enum RetryError: Error, LocalizedError {
+    case timeout
+
+    var errorDescription: String? { "Network timeout" }
+}
+
+var attemptCount = 0
+
+retry(times: 3) {
+    attemptCount += 1
+    if attemptCount < 3 {
+        throw RetryError.timeout
+    }
+    print("Task completed successfully.")
+}

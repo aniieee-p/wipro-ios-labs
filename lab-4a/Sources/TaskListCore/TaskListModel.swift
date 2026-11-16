@@ -1,39 +1,39 @@
 import Foundation
 
-public final class TaskListModel {
-    public private(set) var tasks: [TaskItem]
+public class TaskListModel {
+    public var tasks: [TaskItem]
 
     public init(tasks: [TaskItem] = []) {
         self.tasks = tasks
     }
 
-    @discardableResult
     public func addTask(title: String) -> Bool {
         let trimmedTitle = title.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !trimmedTitle.isEmpty else { return false }
-
+        if trimmedTitle.isEmpty {
+            return false
+        }
         tasks.append(TaskItem(title: trimmedTitle))
         return true
     }
 
-    @discardableResult
-    public func toggleTask(id: TaskItem.ID) -> Bool {
-        guard let index = tasks.firstIndex(where: { $0.id == id }) else {
-            return false
+    public func toggleTask(id: UUID) -> Bool {
+        for i in 0..<tasks.count {
+            if tasks[i].id == id {
+                tasks[i].isCompleted.toggle()
+                return true
+            }
         }
-
-        tasks[index].isCompleted.toggle()
-        return true
+        return false
     }
 
-    @discardableResult
-    public func deleteTask(id: TaskItem.ID) -> Bool {
-        guard let index = tasks.firstIndex(where: { $0.id == id }) else {
-            return false
+    public func deleteTask(id: UUID) -> Bool {
+        for i in 0..<tasks.count {
+            if tasks[i].id == id {
+                tasks.remove(at: i)
+                return true
+            }
         }
-
-        tasks.remove(at: index)
-        return true
+        return false
     }
 
     public func filteredTasks(for filter: TaskFilter) -> [TaskItem] {
@@ -41,9 +41,21 @@ public final class TaskListModel {
         case .all:
             return tasks
         case .active:
-            return tasks.filter { !$0.isCompleted }
+            var result: [TaskItem] = []
+            for task in tasks {
+                if !task.isCompleted {
+                    result.append(task)
+                }
+            }
+            return result
         case .completed:
-            return tasks.filter(\.isCompleted)
+            var result: [TaskItem] = []
+            for task in tasks {
+                if task.isCompleted {
+                    result.append(task)
+                }
+            }
+            return result
         }
     }
 }

@@ -1,32 +1,33 @@
+
 import Foundation
 
-public struct CourseDetailError: Error, Equatable, LocalizedError, Sendable {
+public struct CourseDetailError: Error, Equatable, Sendable {
     public let courseID: String
 
     public init(courseID: String) {
         self.courseID = courseID
     }
 
-    public var errorDescription: String? {
-        "Course \(courseID) could not be loaded."
+    public var message: String {
+        return "Course \(courseID) could not be loaded."
     }
 }
 
 public struct CourseDetailsService: Sendable {
-    private let delay: Duration
+    private let delaySeconds: Double
     private let failingIDs: Set<String>
 
     public init(
-        delay: Duration = .milliseconds(700),
+        delaySeconds: Double = 0.7,
         failingIDs: Set<String> = []
     ) {
-        self.delay = delay
+        self.delaySeconds = delaySeconds
         self.failingIDs = failingIDs
     }
 
+    // Fetch courses one at a time (sequential)
     public func fetchSequentially(ids: [String]) async throws -> TimedCourseDetails {
-        let clock = ContinuousClock()
-        let start = clock.now
+        let startTime = Date()
         var outcomes: [CourseDetailOutcome] = []
 
         for id in ids {
@@ -34,42 +35,59 @@ public struct CourseDetailsService: Sendable {
             outcomes.append(try await fetchOutcome(for: id))
         }
 
+        let elapsed = Date().timeIntervalSince(startTime)
+
         return TimedCourseDetails(
             outcomes: outcomes.sorted { $0.id < $1.id },
-            elapsedSeconds: seconds(from: start.duration(to: clock.now))
+            elapsedSeconds: elapsed
         )
     }
 
+    // Fetch all courses at the same time (concurrent)
     public func fetchConcurrently(ids: [String]) async throws -> TimedCourseDetails {
-        let clock = ContinuousClock()
-        let start = clock.now
+        let startTime = Date()
+
         let outcomes = try await withThrowingTaskGroup(
             of: CourseDetailOutcome.self,
             returning: [CourseDetailOutcome].self
         ) { group in
             for id in ids {
-                group.addTask {
+                group.addTask { [self] in
                     try Task.checkCancellation()
                     return try await fetchOutcome(for: id)
                 }
             }
 
             var collected: [CourseDetailOutcome] = []
+
             for try await outcome in group {
                 collected.append(outcome)
             }
+
             return collected.sorted { $0.id < $1.id }
         }
 
+        let elapsed = Date().timeIntervalSince(startTime)
+
         return TimedCourseDetails(
             outcomes: outcomes,
-            elapsedSeconds: seconds(from: start.duration(to: clock.now))
+            elapsedSeconds: elapsed
         )
     }
 
+    // Fetch a single course and return success or failure outcome
     private func fetchOutcome(for id: String) async throws -> CourseDetailOutcome {
         do {
-            try await fetchDetail(for: id)
+            try await Task.sleep(
+                nanoseconds: UInt64(delaySeconds * 1_000_000_000)
+            )
+
+            try Task.checkCancellation()
+
+            if failingIDs.contains(id) {
+                throw CourseDetailError(courseID: id)
+            }
+
             return .success(
                 CourseDetail(
                     id: id,
@@ -79,22 +97,16 @@ public struct CourseDetailsService: Sendable {
             )
         } catch is CancellationError {
             throw CancellationError()
+        } catch let detailError as CourseDetailError {
+            return .failure(
+                id: id,
+                message: detailError.message
+            )
         } catch {
-            return .failure(id: id, message: error.localizedDescription)
+            return .failure(
+                id: id,
+                message: error.localizedDescription
+            )
         }
-    }
-
-    private func fetchDetail(for id: String) async throws {
-        try await Task.sleep(for: delay)
-        try Task.checkCancellation()
-
-        if failingIDs.contains(id) {
-            throw CourseDetailError(courseID: id)
-        }
-    }
-
-    private func seconds(from duration: Duration) -> Double {
-        let components = duration.components
-        return Double(components.seconds) + Double(components.attoseconds) / 1_000_000_000_000_000_000
     }
 }

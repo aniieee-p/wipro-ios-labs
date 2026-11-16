@@ -1,6 +1,6 @@
 import Foundation
 
-public struct ProfileFormInput: Equatable, Sendable {
+public struct ProfileFormInput: Equatable {
     public let name: String
     public let email: String
     public let course: String
@@ -12,13 +12,13 @@ public struct ProfileFormInput: Equatable, Sendable {
     }
 }
 
-public enum ProfileField: String, CaseIterable, Equatable, Sendable {
+public enum ProfileField: String, CaseIterable, Equatable {
     case name
     case email
     case course
 }
 
-public struct ProfileFormErrors: Equatable, Sendable {
+public struct ProfileFormErrors: Equatable {
     public let fields: [ProfileField: String]
     public var isEmpty: Bool { fields.isEmpty }
 

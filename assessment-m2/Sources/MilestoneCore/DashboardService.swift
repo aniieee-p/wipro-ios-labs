@@ -1,33 +1,43 @@
+
 import Foundation
 
-public struct DashboardService: Sendable {
-    private let delay: Duration
+public struct DashboardService: Sendable {    private let delaySeconds: Double
 
-    public init(delay: Duration = .milliseconds(800)) {
-        self.delay = delay
+    public init(delaySeconds: Double = 0.8) {
+        self.delaySeconds = delaySeconds
     }
 
-    public func loadDashboard(failingSource: DashboardSource? = nil) async throws -> DashboardData {
+    public func loadDashboard(
+        failingSource: DashboardSource? = nil
+    ) async throws -> DashboardData {
         let parts = try await withThrowingTaskGroup(
             of: DashboardPart.self,
             returning: [DashboardPart].self
         ) { group in
             group.addTask {
-                try await fetchCourses(failing: failingSource == .courses)
+                try await self.fetchCourses(
+                    failing: failingSource == .courses
+                )
             }
+
             group.addTask {
-                try await fetchAnnouncements(failing: failingSource == .announcements)
+                try await self.fetchAnnouncements(
+                    failing: failingSource == .announcements
+                )
             }
 
             var results: [DashboardPart] = []
+
             for try await part in group {
                 results.append(part)
             }
+
             return results
         }
 
         var courses: [CourseSummary] = []
         var announcements: [Announcement] = []
+
         for part in parts {
             switch part {
             case .courses(let values):
@@ -36,31 +46,57 @@ public struct DashboardService: Sendable {
                 announcements = values
             }
         }
-        return DashboardData(courses: courses, announcements: announcements)
+
+        return DashboardData(
+            courses: courses,
+            announcements: announcements
+        )
     }
 
     private func fetchCourses(failing: Bool) async throws -> DashboardPart {
-        try await Task.sleep(for: delay)
+        try await Task.sleep(
+            nanoseconds: UInt64(delaySeconds * 1_000_000_000)
+        )
         try Task.checkCancellation()
-        if failing { throw DashboardError.unavailable(.courses) }
+
+        if failing {
+            throw DashboardError.unavailable(.courses)
+        }
+
         return .courses([
-            CourseSummary(title: "SwiftUI Essentials", instructor: "M. Chen"),
-            CourseSummary(title: "Concurrency in Swift", instructor: "R. Singh")
+            CourseSummary(
+                title: "SwiftUI Essentials",
+                instructor: "M. Chen"
+            ),
+            CourseSummary(
+                title: "Concurrency in Swift",
+                instructor: "R. Singh"
+            )
         ])
     }
 
     private func fetchAnnouncements(failing: Bool) async throws -> DashboardPart {
-        try await Task.sleep(for: delay)
+        try await Task.sleep(
+            nanoseconds: UInt64(delaySeconds * 1_000_000_000)
+        )
         try Task.checkCancellation()
-        if failing { throw DashboardError.unavailable(.announcements) }
+
+        if failing {
+            throw DashboardError.unavailable(.announcements)
+        }
+
         return .announcements([
-            Announcement(message: "Concurrency workshop starts Friday."),
-            Announcement(message: "Your project review is ready.")
+            Announcement(
+                message: "Concurrency workshop starts Friday."
+            ),
+            Announcement(
+                message: "Your project review is ready."
+            )
         ])
     }
 }
 
-private enum DashboardPart: Sendable {
+private enum DashboardPart {
     case courses([CourseSummary])
     case announcements([Announcement])
 }

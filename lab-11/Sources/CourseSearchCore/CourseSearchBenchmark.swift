@@ -1,23 +1,27 @@
 import Foundation
 
-public struct SearchRun: Equatable, Sendable {
+public struct SearchRun: Equatable {
     public let matchedCourseIDs: [[Int]]
     public let elapsedMilliseconds: Double
     public let normalizedTitleCount: Int
 
     public var totalMatches: Int {
-        matchedCourseIDs.reduce(0) { $0 + $1.count }
+        var count = 0
+        for group in matchedCourseIDs {
+            count += group.count
+        }
+        return count
     }
 }
 
-public struct SearchBenchmarkReport: Equatable, Sendable {
+public struct SearchBenchmarkReport: Equatable {
     public let courseCount: Int
     public let queries: [String]
     public let baseline: SearchRun
     public let indexed: SearchRun
 
     public var resultsMatch: Bool {
-        baseline.matchedCourseIDs == indexed.matchedCourseIDs
+        return baseline.matchedCourseIDs == indexed.matchedCourseIDs
     }
 }
 
@@ -37,7 +41,6 @@ public enum CourseSearchBenchmark {
         courseCount: Int = 20_000,
         queries: [String] = defaultQueries
     ) -> SearchBenchmarkReport {
-        precondition(courseCount >= 0)
         let courses = Course.sampleCatalog(count: courseCount)
         let baseline = runBaseline(courses: courses, queries: queries)
         let indexed = runIndexed(courses: courses, queries: queries)
@@ -52,35 +55,44 @@ public enum CourseSearchBenchmark {
 
     private static func runBaseline(courses: [Course], queries: [String]) -> SearchRun {
         let start = ProcessInfo.processInfo.systemUptime
-        let results = queries.map { query in
-            let normalizedQuery = query.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
-            guard !normalizedQuery.isEmpty else { return courses.map(\.id) }
-            return courses.compactMap { course in
-                course.title.lowercased().contains(normalizedQuery) ? course.id : nil
-            }
-        }
-        let elapsedMilliseconds = (ProcessInfo.processInfo.systemUptime - start) * 1_000
+        var results: [[Int]] = []
 
+        for query in queries {
+            let normalizedQuery = query.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+            var matches: [Int] = []
+            if normalizedQuery.isEmpty {
+                matches = courses.map { $0.id }
+            } else {
+                for course in courses {
+                    if course.title.lowercased().contains(normalizedQuery) {
+                        matches.append(course.id)
+                    }
+                }
+            }
+            results.append(matches)
+        }
+
+        let elapsed = (ProcessInfo.processInfo.systemUptime - start) * 1_000
         return SearchRun(
             matchedCourseIDs: results,
-            elapsedMilliseconds: elapsedMilliseconds,
-            normalizedTitleCount: courses.count * queries.filter {
-                !$0.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
-            }.count
+            elapsedMilliseconds: elapsed,
+            normalizedTitleCount: courses.count * queries.count
         )
     }
 
     private static func runIndexed(courses: [Course], queries: [String]) -> SearchRun {
         let start = ProcessInfo.processInfo.systemUptime
         let index = CourseSearchIndex(courses: courses)
-        let results = queries.map { query in
-            index.search(query).map(\.id)
-        }
-        let elapsedMilliseconds = (ProcessInfo.processInfo.systemUptime - start) * 1_000
+        var results: [[Int]] = []
 
+        for query in queries {
+            results.append(index.search(query).map { $0.id })
+        }
+
+        let elapsed = (ProcessInfo.processInfo.systemUptime - start) * 1_000
         return SearchRun(
             matchedCourseIDs: results,
-            elapsedMilliseconds: elapsedMilliseconds,
+            elapsedMilliseconds: elapsed,
             normalizedTitleCount: index.normalizedTitleCount
         )
     }

@@ -1,16 +1,25 @@
+
+import Foundation
+
 #if canImport(Combine)
 import Combine
+#else
+public protocol ObservableObject: AnyObject {}
+
+@propertyWrapper
+public struct Published<Value> {
+    public var wrappedValue: Value
+
+    public init(wrappedValue: Value) {
+        self.wrappedValue = wrappedValue
+    }
+}
 #endif
 
 @MainActor
-public final class TaskListViewModel {
-    #if canImport(Combine)
-    @Published public private(set) var tasks: [TaskItem]
+public final class TaskListViewModel: ObservableObject {
+    @Published public var tasks: [TaskItem]
     @Published public var selectedFilter: TaskFilter = .all
-    #else
-    public private(set) var tasks: [TaskItem]
-    public var selectedFilter: TaskFilter = .all
-    #endif
 
     private var model: TaskListModel
 
@@ -23,28 +32,27 @@ public final class TaskListViewModel {
         model.filteredTasks(for: selectedFilter)
     }
 
-    @discardableResult
     public func addTask(title: String) -> Bool {
-        guard model.addTask(title: title) else { return false }
-        tasks = model.tasks
-        return true
+        let success = model.addTask(title: title)
+        if success {
+            tasks = model.tasks
+        }
+        return success
     }
 
-    @discardableResult
-    public func toggleTask(id: TaskItem.ID) -> Bool {
-        guard model.toggleTask(id: id) else { return false }
-        tasks = model.tasks
-        return true
+    public func toggleTask(id: UUID) -> Bool {
+        let success = model.toggleTask(id: id)
+        if success {
+            tasks = model.tasks
+        }
+        return success
     }
 
-    @discardableResult
-    public func deleteTask(id: TaskItem.ID) -> Bool {
-        guard model.deleteTask(id: id) else { return false }
-        tasks = model.tasks
-        return true
+    public func deleteTask(id: UUID) -> Bool {
+        let success = model.deleteTask(id: id)
+        if success {
+            tasks = model.tasks
+        }
+        return success
     }
 }
-
-#if canImport(Combine)
-extension TaskListViewModel: ObservableObject {}
-#endif

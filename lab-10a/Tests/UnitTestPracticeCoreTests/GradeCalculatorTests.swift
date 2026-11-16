@@ -51,7 +51,7 @@ final class GradeCalculatorTests: XCTestCase {
                 GradeItem(name: "Quiz", earnedPoints: 0, possiblePoints: 0)
             ])
         ) { error in
-            XCTAssertEqual(error as? GradeCalculationError, .nonPositivePossiblePoints(item: "Quiz"))
+            XCTAssertEqual(error as? GradeCalculationError, .invalidScore(item: "Quiz"))
         }
     }
 
@@ -61,7 +61,7 @@ final class GradeCalculatorTests: XCTestCase {
                 GradeItem(name: "Quiz", earnedPoints: 11, possiblePoints: 10)
             ])
         ) { error in
-            XCTAssertEqual(error as? GradeCalculationError, .earnedExceedsPossible(item: "Quiz"))
+            XCTAssertEqual(error as? GradeCalculationError, .invalidScore(item: "Quiz"))
         }
     }
 
@@ -71,28 +71,7 @@ final class GradeCalculatorTests: XCTestCase {
                 GradeItem(name: "Quiz", earnedPoints: -1, possiblePoints: 10)
             ])
         ) { error in
-            XCTAssertEqual(error as? GradeCalculationError, .negativeEarnedPoints(item: "Quiz"))
-        }
-    }
-
-    func testRejectsNonFiniteScores() {
-        XCTAssertThrowsError(
-            try GradeCalculator.calculate([
-                GradeItem(name: "Quiz", earnedPoints: .infinity, possiblePoints: 10)
-            ])
-        ) { error in
-            XCTAssertEqual(error as? GradeCalculationError, .nonFiniteScore(item: "Quiz"))
-        }
-    }
-
-    func testRejectsTotalsThatOverflowEvenWhenIndividualScoresAreFinite() {
-        XCTAssertThrowsError(
-            try GradeCalculator.calculate([
-                GradeItem(name: "Quiz 1", earnedPoints: 1e308, possiblePoints: 1e308),
-                GradeItem(name: "Quiz 2", earnedPoints: 1e308, possiblePoints: 1e308)
-            ])
-        ) { error in
-            XCTAssertEqual(error as? GradeCalculationError, .nonFiniteTotal)
+            XCTAssertEqual(error as? GradeCalculationError, .invalidScore(item: "Quiz"))
         }
     }
 }

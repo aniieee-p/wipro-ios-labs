@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="650" viewBox="0 0 1000 650" role="img" aria-labelledby="title description">
+  <title id="title">Course Planner architecture</title>
+  <desc id="description">SwiftUI app views call a published view model, which uses a planner model and injected catalog service. XCTest exercises the Foundation core.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#54627b"/>
+    </marker>
+    <style>
+      .box { fill: #f5f7fc; stroke: #637598; stroke-width: 2; rx: 16; }
+      .core { fill: #eaf5ee; stroke: #54856a; stroke-width: 2; rx: 16; }
+      .test { fill: #fff5e7; stroke: #b88642; stroke-width: 2; rx: 16; }
+      .title { font: 600 18px -apple-system, BlinkMacSystemFont, sans-serif; fill: #182238; }
+      .body { font: 14px -apple-system, BlinkMacSystemFont, sans-serif; fill: #39465f; }
+      .small { font: 12px -apple-system, BlinkMacSystemFont, sans-serif; fill: #58647a; }
+      .edge { stroke: #54627b; stroke-width: 2; fill: none; marker-end: url(#arrow); }
+      .label { font: 12px -apple-system, BlinkMacSystemFont, sans-serif; fill: #46536a; }
+    </style>
+  </defs>
+  <text x="500" y="42" text-anchor="middle" class="title">Course Planner · Data and UI Flow</text>
+
+  <rect x="320" y="75" width="360" height="70" class="box"/>
+  <text x="500" y="105" text-anchor="middle" class="title">CoursePlannerApp</text>
+  <text x="500" y="127" text-anchor="middle" class="body">Owns shared @StateObject view model</text>
+
+  <rect x="70" y="210" width="245" height="120" class="box"/>
+  <text x="192" y="243" text-anchor="middle" class="title">Home View</text>
+  <text x="192" y="270" text-anchor="middle" class="body">Credit summary</text>
+  <text x="192" y="293" text-anchor="middle" class="body">Empty / planned courses</text>
+
+  <rect x="378" y="210" width="245" height="120" class="box"/>
+  <text x="500" y="243" text-anchor="middle" class="title">Catalog + Detail</text>
+  <text x="500" y="270" text-anchor="middle" class="body">Search, add, remove</text>
+  <text x="500" y="293" text-anchor="middle" class="body">Validation feedback</text>
+
+  <rect x="685" y="210" width="245" height="120" class="box"/>
+  <text x="807" y="243" text-anchor="middle" class="title">Weekly Schedule</text>
+  <text x="807" y="270" text-anchor="middle" class="body">Grouped by weekday</text>
+  <text x="807" y="293" text-anchor="middle" class="body">Swipe to remove</text>
+
+  <rect x="315" y="405" width="370" height="105" class="core"/>
+  <text x="500" y="440" text-anchor="middle" class="title">CoursePlannerViewModel</text>
+  <text x="500" y="466" text-anchor="middle" class="body">@Published state · search · catalog loading</text>
+  <text x="500" y="488" text-anchor="middle" class="body">Forwards add/remove actions to model</text>
+
+  <rect x="94" y="550" width="350" height="75" class="core"/>
+  <text x="269" y="580" text-anchor="middle" class="title">CoursePlannerModel</text>
+  <text x="269" y="603" text-anchor="middle" class="small">Credit totals · time conflicts · plan ordering</text>
+
+  <rect x="556" y="550" width="350" height="75" class="core"/>
+  <text x="731" y="580" text-anchor="middle" class="title">CourseCatalogService</text>
+  <text x="731" y="603" text-anchor="middle" class="small">Injected protocol · deterministic local catalog</text>
+
+  <rect x="28" y="389" width="215" height="95" class="test"/>
+  <text x="135" y="422" text-anchor="middle" class="title">XCTest target</text>
+  <text x="135" y="447" text-anchor="middle" class="small">15 core behavior tests</text>
+  <text x="135" y="467" text-anchor="middle" class="small">No live services required</text>
+
+  <path d="M430 145 C330 170, 240 180, 193 210" class="edge"/>
+  <path d="M500 145 L500 210" class="edge"/>
+  <path d="M570 145 C675 170, 770 180, 807 210" class="edge"/>
+  <path d="M192 330 C230 380, 350 390, 410 405" class="edge"/>
+  <path d="M500 330 L500 405" class="edge"/>
+  <path d="M807 330 C750 380, 650 390, 590 405" class="edge"/>
+  <path d="M420 510 C390 530, 340 535, 305 550" class="edge"/>
+  <path d="M580 510 C610 530, 660 535, 695 550" class="edge"/>
+  <path d="M200 435 C245 435, 275 435, 315 450" class="edge"/>
+  <text x="277" y="423" class="label">tests core rules</text>
+</svg>

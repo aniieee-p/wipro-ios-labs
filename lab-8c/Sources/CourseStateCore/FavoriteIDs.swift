@@ -1,14 +1,14 @@
 import Foundation
 
 public struct FavoriteIDs: Equatable, Sendable {
-    private var ids: Set<String>
+    var ids: Set<String>
 
     public init(ids: Set<String> = []) {
         self.ids = ids
     }
 
     public func contains(_ id: String) -> Bool {
-        ids.contains(id)
+        return ids.contains(id)
     }
 
     public mutating func setFavorite(_ isFavorite: Bool, for id: String) {
@@ -20,6 +20,6 @@ public struct FavoriteIDs: Equatable, Sendable {
     }
 
     public var all: Set<String> {
-        ids
+        return ids
     }
 }

@@ -1,6 +1,7 @@
+
 import Foundation
 
-public struct DirectoryUser: Codable, Equatable, Hashable, Identifiable, Sendable {
+public struct DirectoryUser: Codable, Equatable, Identifiable, Sendable {
     public let id: Int
     public let name: String
     public let username: String
@@ -10,14 +11,14 @@ public struct DirectoryUser: Codable, Equatable, Hashable, Identifiable, Sendabl
     public let address: Address
     public let company: Company
 
-    public struct Address: Codable, Equatable, Hashable, Sendable {
+    public struct Address: Codable, Equatable, Sendable {
         public let street: String
         public let suite: String
         public let city: String
         public let zipcode: String
     }
 
-    public struct Company: Codable, Equatable, Hashable, Sendable {
+    public struct Company: Codable, Equatable, Sendable {
         public let name: String
     }
 }

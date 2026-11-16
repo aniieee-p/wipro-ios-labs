@@ -1,3 +1,4 @@
+
 import Foundation
 
 #if canImport(FoundationNetworking)
@@ -17,32 +18,34 @@ public struct URLSessionDirectoryTransport: DirectoryTransport {
 
     public func data(for request: URLRequest) async throws -> (Data, Int) {
         let (data, response) = try await session.data(for: request)
+
         guard let httpResponse = response as? HTTPURLResponse else {
             throw DirectoryError.invalidResponse
         }
+
         return (data, httpResponse.statusCode)
     }
 }
 
-public enum DirectoryError: Error, Equatable, LocalizedError, Sendable {
+public enum DirectoryError: Error, Equatable, Sendable {
     case invalidURL
     case invalidResponse
     case httpStatus(Int)
     case decodingFailed
     case networkFailure(String)
 
-    public var errorDescription: String? {
+    public var message: String {
         switch self {
         case .invalidURL:
-            "The directory URL is invalid."
+            return "The directory URL is invalid."
         case .invalidResponse:
-            "The server response was not a valid HTTP response."
+            return "The server response was not a valid HTTP response."
         case .httpStatus(let code):
-            "The server returned HTTP \(code)."
+            return "The server returned HTTP \(code)."
         case .decodingFailed:
-            "The server response could not be decoded."
+            return "The server response could not be decoded."
         case .networkFailure(let message):
-            "Network request failed: \(message)"
+            return "Network request failed: \(message)"
         }
     }
 }
@@ -77,6 +80,7 @@ public struct UserDirectoryService: Sendable {
 
         let data: Data
         let statusCode: Int
+
         do {
             (data, statusCode) = try await transport.data(for: request)
         } catch is CancellationError {
@@ -88,6 +92,7 @@ public struct UserDirectoryService: Sendable {
         guard (200..<300).contains(statusCode) else {
             throw DirectoryError.httpStatus(statusCode)
         }
+
         do {
             return try JSONDecoder().decode([DirectoryUser].self, from: data)
         } catch {

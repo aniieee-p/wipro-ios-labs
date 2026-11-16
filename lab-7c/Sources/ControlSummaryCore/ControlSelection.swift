@@ -1,6 +1,7 @@
+
 import Foundation
 
-public struct ControlSelection: Equatable, Sendable {
+public struct ControlSelection: Equatable {
     public let name: String
     public let notificationsEnabled: Bool
     public let studyMode: String
@@ -25,6 +26,7 @@ public struct ControlSelection: Equatable, Sendable {
         let displayName = name.isEmpty ? "Not provided" : name
         let notificationStatus = notificationsEnabled ? "On" : "Off"
         let time = reminderDate.formatted(date: .omitted, time: .shortened)
+
         return """
         Name: \(displayName)
         Notifications: \(notificationStatus)

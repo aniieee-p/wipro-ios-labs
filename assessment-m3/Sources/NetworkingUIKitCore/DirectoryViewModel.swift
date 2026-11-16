@@ -1,12 +1,24 @@
+
 import Foundation
 
 #if canImport(Combine)
 import Combine
+#else
+public protocol ObservableObject: AnyObject {}
+
+@propertyWrapper
+public struct Published<Value> {
+    public var wrappedValue: Value
+
+    public init(wrappedValue: Value) {
+        self.wrappedValue = wrappedValue
+    }
+}
 #endif
 
 @MainActor
-public final class DirectoryViewModel {
-    public enum State: Equatable, Sendable {
+public final class DirectoryViewModel: ObservableObject {
+    public enum State: Equatable {
         case idle
         case loading
         case success([DirectoryUser])
@@ -15,11 +27,7 @@ public final class DirectoryViewModel {
         case cancelled
     }
 
-    #if canImport(Combine)
     @Published public private(set) var state: State = .idle
-    #else
-    public private(set) var state: State = .idle
-    #endif
 
     private let service: UserDirectoryService
     private var requestTask: Task<Void, Never>?
@@ -29,28 +37,44 @@ public final class DirectoryViewModel {
     }
 
     public func load() {
-        guard requestTask == nil else { return }
+        if requestTask != nil {
+            return
+        }
+
         state = .loading
-        requestTask = Task { [weak self] in
-            guard let self else { return }
-            defer { requestTask = nil }
+        let service = self.service
+
+        requestTask = Task { [weak self, service] in
             do {
                 let users = try await service.fetchUsers()
                 try Task.checkCancellation()
-                state = users.isEmpty ? .empty : .success(users)
+
+                guard let self else {
+                    return
+                }
+
+                self.state = users.isEmpty ? .empty : .success(users)
+                self.requestTask = nil
             } catch is CancellationError {
-                state = .cancelled
+                guard let self else {
+                    return
+                }
+
+                self.state = .cancelled
+                self.requestTask = nil
             } catch {
-                state = .failure(error.localizedDescription)
+                guard let self else {
+                    return
+                }
+
+                self.state = .failure(error.localizedDescription)
+                self.requestTask = nil
             }
         }
     }
 
     public func cancel() {
         requestTask?.cancel()
+        requestTask = nil
     }
 }
-
-#if canImport(Combine)
-extension DirectoryViewModel: ObservableObject {}
-#endif

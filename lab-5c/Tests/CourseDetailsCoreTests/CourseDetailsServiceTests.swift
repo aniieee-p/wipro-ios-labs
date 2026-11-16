@@ -3,7 +3,7 @@ import XCTest
 
 final class CourseDetailsServiceTests: XCTestCase {
     func testTaskGroupReturnsAllResultsInStableOrder() async throws {
-        let service = CourseDetailsService(delay: .milliseconds(10))
+        let service = CourseDetailsService(delaySeconds: 0.01)
 
         let result = try await service.fetchConcurrently(ids: ["D", "B", "A", "C"])
 
@@ -15,10 +15,7 @@ final class CourseDetailsServiceTests: XCTestCase {
     }
 
     func testTaskGroupKeepsSuccessfulResultsWhenAChildFails() async throws {
-        let service = CourseDetailsService(
-            delay: .milliseconds(10),
-            failingIDs: ["B"]
-        )
+        let service = CourseDetailsService(delaySeconds: 0.01, failingIDs: ["B"])
 
         let result = try await service.fetchConcurrently(ids: ["A", "B", "C"])
 
@@ -31,7 +28,7 @@ final class CourseDetailsServiceTests: XCTestCase {
     }
 
     func testTaskGroupIsFasterThanSequentialFetchForSameDelays() async throws {
-        let service = CourseDetailsService(delay: .milliseconds(80))
+        let service = CourseDetailsService(delaySeconds: 0.08)
         let ids = ["A", "B", "C", "D"]
 
         let sequential = try await service.fetchSequentially(ids: ids)
@@ -41,7 +38,7 @@ final class CourseDetailsServiceTests: XCTestCase {
     }
 
     func testCancellingTaskGroupThrowsCancellationError() async {
-        let service = CourseDetailsService(delay: .seconds(1))
+        let service = CourseDetailsService(delaySeconds: 1.0)
         let task = Task {
             try await service.fetchConcurrently(ids: ["A", "B", "C", "D"])
         }

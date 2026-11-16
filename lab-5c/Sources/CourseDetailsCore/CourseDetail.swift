@@ -1,3 +1,4 @@
+
 import Foundation
 
 public struct CourseDetail: Identifiable, Equatable, Sendable {
@@ -12,7 +13,8 @@ public struct CourseDetail: Identifiable, Equatable, Sendable {
     }
 }
 
-public enum CourseDetailOutcome: Equatable, Sendable, Identifiable {
+// Represents the result of loading one course — either success or failure
+public enum CourseDetailOutcome: Equatable, Identifiable, Sendable {
     case success(CourseDetail)
     case failure(id: String, message: String)
 
@@ -26,6 +28,7 @@ public enum CourseDetailOutcome: Equatable, Sendable, Identifiable {
     }
 }
 
+// Holds outcomes from a fetch run along with how long it took
 public struct TimedCourseDetails: Equatable, Sendable {
     public let outcomes: [CourseDetailOutcome]
     public let elapsedSeconds: Double
@@ -36,6 +39,7 @@ public struct TimedCourseDetails: Equatable, Sendable {
     }
 }
 
+// Holds both sequential and concurrent fetch results for comparison
 public struct CourseDetailsComparison: Equatable, Sendable {
     public let sequential: TimedCourseDetails
     public let concurrent: TimedCourseDetails

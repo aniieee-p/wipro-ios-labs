@@ -1,15 +1,9 @@
-#if canImport(Combine)
 import Combine
-#endif
 
-public final class TaskViewModel {
-    #if canImport(Combine)
-    @Published public private(set) var tasks: [TaskItem]
+// ViewModel for the task list screen
+public final class TaskViewModel: ObservableObject {
+    @Published public var tasks: [TaskItem]
     @Published public var selectedFilter: TaskFilter = .all
-    #else
-    public private(set) var tasks: [TaskItem]
-    public var selectedFilter: TaskFilter = .all
-    #endif
 
     private let model: TaskListModel
 
@@ -18,36 +12,32 @@ public final class TaskViewModel {
         self.tasks = model.tasks
     }
 
+    // Returns only the tasks matching the selected filter
     public var visibleTasks: [TaskItem] {
-        model.filteredTasks(for: selectedFilter)
+        return model.filteredTasks(for: selectedFilter)
     }
 
-    @discardableResult
     public func addTask(title: String) -> Bool {
-        guard model.addTask(title: title) else { return false }
-        refreshTasks()
-        return true
+        let success = model.addTask(title: title)
+        if success {
+            tasks = model.tasks
+        }
+        return success
     }
 
-    @discardableResult
-    public func toggleTask(id: TaskItem.ID) -> Bool {
-        guard model.toggleTask(id: id) else { return false }
-        refreshTasks()
-        return true
+    public func toggleTask(id: UUID) -> Bool {
+        let success = model.toggleTask(id: id)
+        if success {
+            tasks = model.tasks
+        }
+        return success
     }
 
-    @discardableResult
-    public func deleteTask(id: TaskItem.ID) -> Bool {
-        guard model.deleteTask(id: id) else { return false }
-        refreshTasks()
-        return true
-    }
-
-    private func refreshTasks() {
-        tasks = model.tasks
+    public func deleteTask(id: UUID) -> Bool {
+        let success = model.deleteTask(id: id)
+        if success {
+            tasks = model.tasks
+        }
+        return success
     }
 }
-
-#if canImport(Combine)
-extension TaskViewModel: ObservableObject {}
-#endif
